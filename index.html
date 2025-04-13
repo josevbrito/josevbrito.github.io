@@ -1,28 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="José Brito - Software Developer and Data Scientist">
-    <title>Contact - José Brito</title>
+    <title>José Brito | Desenvolvedor</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
+        <!-- Header com navegação -->
         <header>
-            <h1>José Brito</h1>
-            <p>Software Developer and Data Scientist</p>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html" class="active">Sobre mim</a></li>
+                    <li><a href="projetos.html">Projetos <span class="counter">7</span></a></li>
+                    <li><a href="educacao.html">Formação</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
         </header>
+
+        <!-- Seção principal -->
         <main>
-            <p>If you'd like to get in touch, send me an email:</p>
-            <a href="mailto:josevictorbritoc@gmail.com" class="email-link">
-                josevictorbritoc@gmail.com
-            </a>
+            <section id="home" class="hero">
+                <div class="hero-content">
+                    <h1 class="heading-name">Sou José Brito</h1>
+                    <div class="hero-info">
+                        <div class="profile-image">
+                            <img src="assets/jose.jpeg" alt="Foto de José Brito">
+                        </div>
+                        <div class="hero-text">
+                            <h2>Desenvolvedor Full Stack e Cientista de Dados.</h2>
+                            <p>Com experiência em desenvolvimento web e mobile, especializado em criar soluções digitais modernas e escaláveis.</p>
+                            <p>Atualmente, foco em desenvolver aplicações com Laravel (PHP), sempre buscando as melhores práticas e novas tecnologias.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção sobre mim -->
+            <section id="sobre" class="section">
+                <h2 class="section-title">Sobre Mim</h2>
+                <div class="about-container">
+                    <div class="about-text">
+                        <p>Sou um desenvolvedor apaixonado por criar experiências digitais excepcionais. Meu foco está em combinar funcionalidade com design intuitivo.</p>
+                        <p>Tenho experiência em diversas tecnologias web modernas e estou sempre buscando aprender mais. Gosto de resolver problemas complexos e transformar ideias em código.</p>
+                        
+                        <h3>Competências Técnicas</h3>
+                        <div class="skills-container">
+                            <div class="skill-category">
+                                <h4>Frontend</h4>
+                                <ul>
+                                    <li>HTML5 & CSS3</li>
+                                    <li>JavaScript</li>
+                                    <li>React.js</li>
+                                    <li>TypeScript/li>
+                                    <li>Flutter</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Backend</h4>
+                                <ul>
+                                    <li>PHP/Laravel</li>
+                                    <li>Python/Django</li>
+                                    <li>Java</li>
+                                    <li>RESTful APIs</li>
+                                    <li>Flutter</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Banco de Dados</h4>
+                                <ul>
+                                    <li>MySQL</li>
+                                    <li>PostgreSQL</li>
+                                    <li>NoSQL</li>
+                                    <li>Firebase Realtime Database</li>
+                                    <li>SQLite</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+
+        <!-- Footer -->
         <footer>
-            <p>&copy; 2024 José Brito. All Rights Reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2025 José Brito. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://github.com/josevbrito" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/josevbrito" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/josevbrito" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
         </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
