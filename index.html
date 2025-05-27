@@ -3,101 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>José Brito | Desenvolvedor</title>
-    <link rel="stylesheet" href="style.css">
+    <title>José Brito | Desenvolvedor Full Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header com navegação -->
-        <header>
-            <nav>
-                <ul class="menu">
-                    <li><a href="index.html" class="active">Sobre mim</a></li>
-                    <li><a href="projetos.html">Projetos <span class="counter">7</span></a></li>
-                    <li><a href="educacao.html">Formação</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+    <div id="app">
+        <!-- Fundo de partículas -->
+        <div class="particles-bg"></div>
+
+        <!-- Navegação -->
+        <nav class="nav-container" :class="{ 'nav-scrolled': scrolled }">
+            <div class="nav-glass">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" 
+                           class="nav-link" 
+                           :class="{ active: activeSection === 'home' }"
+                           @click="scrollToSection('home')">
+                            <i class="fas fa-home"></i>
+                            Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" 
+                           class="nav-link" 
+                           :class="{ active: activeSection === 'about' }"
+                           @click="scrollToSection('about')">
+                            <i class="fas fa-user"></i>
+                            Sobre
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" 
+                           class="nav-link" 
+                           :class="{ active: activeSection === 'projects' }"
+                           @click="scrollToSection('projects')">
+                            <i class="fas fa-code"></i>
+                            Projetos
+                            <span class="project-counter">{{ projects.length }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#education" 
+                           class="nav-link" 
+                           :class="{ active: activeSection === 'education' }"
+                           @click="scrollToSection('education')">
+                            <i class="fas fa-graduation-cap"></i>
+                            Formação
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" 
+                           class="nav-link" 
+                           :class="{ active: activeSection === 'contact' }"
+                           @click="scrollToSection('contact')">
+                            <i class="fas fa-envelope"></i>
+                            Contato
+                        </a>
+                    </li>
                 </ul>
-            </nav>
-        </header>
+            </div>
+        </nav>
 
-        <!-- Seção principal -->
-        <main>
-            <section id="home" class="hero">
+        <div class="main-container">
+            <!-- Seção Hero -->
+            <section id="home" class="hero-section">
                 <div class="hero-content">
-                    <h1 class="heading-name">Sou José Brito</h1>
-                    <div class="hero-info">
-                        <div class="profile-image">
-                            <img src="assets/jose.jpeg" alt="Foto de José Brito">
-                        </div>
-                        <div class="hero-text">
-                            <h2>Desenvolvedor Full Stack e Cientista de Dados.</h2>
-                            <p>Com experiência em desenvolvimento web e mobile, especializado em criar soluções digitais modernas e escaláveis.</p>
-                            <p>Atualmente, foco em desenvolver aplicações com Laravel (PHP), sempre buscando as melhores práticas e novas tecnologias.</p>
+                    <div class="hero-greeting">{{ greeting }}</div>
+                    <h1 class="hero-name">{{ name }}</h1>
+                    <h2 class="hero-title">{{ title }}</h2>
+                    <p class="hero-description">{{ description }}</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn-primary" @click="scrollToSection('projects')">
+                            <i class="fas fa-rocket"></i>
+                            Ver Projetos
+                        </a>
+                        <a href="#contact" class="btn-secondary" @click="scrollToSection('contact')">
+                            <i class="fas fa-envelope"></i>
+                            Entre em Contato
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Sobre -->
+            <section id="about" class="section">
+                <h2 class="section-title">Sobre Mim</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>{{ aboutText.paragraph1 }}</p>
+                        <p>{{ aboutText.paragraph2 }}</p>
+                        <p>{{ aboutText.paragraph3 }}</p>
+                    </div>
+                    <div class="skills-container">
+                        <div v-for="skillCategory in skills" :key="skillCategory.name" class="skill-category">
+                            <h4>{{ skillCategory.name }}</h4>
+                            <ul class="skill-list">
+                                <li v-for="skill in skillCategory.items" :key="skill" class="skill-item">
+                                    {{ skill }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Seção sobre mim -->
-            <section id="sobre" class="section">
-                <h2 class="section-title">Sobre Mim</h2>
-                <div class="about-container">
-                    <div class="about-text">
-                        <p>Sou um desenvolvedor apaixonado por criar experiências digitais excepcionais. Meu foco está em combinar funcionalidade com design intuitivo.</p>
-                        <p>Tenho experiência em diversas tecnologias web modernas e estou sempre buscando aprender mais. Gosto de resolver problemas complexos e transformar ideias em código.</p>
-                        
-                        <h3>Competências Técnicas</h3>
-                        <div class="skills-container">
-                            <div class="skill-category">
-                                <h4>Frontend</h4>
-                                <ul>
-                                    <li>HTML5 & CSS3</li>
-                                    <li>JavaScript</li>
-                                    <li>React.js</li>
-                                    <li>TypeScript/li>
-                                    <li>Flutter</li>
-                                </ul>
-                            </div>
-                            <div class="skill-category">
-                                <h4>Backend</h4>
-                                <ul>
-                                    <li>PHP/Laravel</li>
-                                    <li>Python/Django</li>
-                                    <li>Java</li>
-                                    <li>RESTful APIs</li>
-                                    <li>Flutter</li>
-                                </ul>
-                            </div>
-                            <div class="skill-category">
-                                <h4>Banco de Dados</h4>
-                                <ul>
-                                    <li>MySQL</li>
-                                    <li>PostgreSQL</li>
-                                    <li>NoSQL</li>
-                                    <li>Firebase Realtime Database</li>
-                                    <li>SQLite</li>
-                                </ul>
+            <!-- Seção Projetos -->
+            <section id="projects" class="section">
+                <h2 class="section-title">Projetos</h2>
+                <div class="projects-grid">
+                    <div v-for="project in projects" :key="project.id" class="project-card">
+                        <div class="project-image" :style="{ background: project.gradient }"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">{{ project.title }}</h3>
+                            <p class="project-description">{{ project.description }}</p>
+                            <div class="tech-stack">
+                                <span v-for="tech in project.technologies" :key="tech" class="tech-tag">
+                                    {{ tech }}
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div style="text-align: center;">
+                    <a href="https://github.com/josevbrito" target="_blank" class="btn-primary">
+                        <i class="fab fa-github"></i>
+                        Ver mais no GitHub
+                    </a>
+                </div>
             </section>
-        </main>
+
+            <!-- Seção Educação -->
+            <section id="education" class="section">
+                <h2 class="section-title">Formação</h2>
+                <div class="timeline">
+                    <div v-for="(edu, index) in education" :key="edu.id" class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>{{ edu.degree }}</h3>
+                            <h4 style="color: var(--accent-primary); margin-bottom: 10px;">{{ edu.institution }}</h4>
+                            <div style="background: var(--bg-glass); color: var(--accent-primary); padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-size: 0.9rem;">
+                                {{ edu.period }}
+                            </div>
+                            <p style="color: var(--text-secondary);">{{ edu.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Contato -->
+            <section id="contact" class="section">
+                <h2 class="section-title">Contato</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Vamos conversar?</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 30px;">
+                            Interessado em colaborar ou tem alguma pergunta? Ficarei feliz em conversar!
+                        </p>
+                        <ul class="contact-list">
+                            <li v-for="contact in contactInfo" :key="contact.type" class="contact-item">
+                                <div class="contact-icon">
+                                    <i :class="contact.icon"></i>
+                                </div>
+                                <div>
+                                    <strong>{{ contact.label }}</strong><br>
+                                    <a :href="contact.link" style="color: var(--text-secondary);">{{ contact.value }}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contact-form">
+                        <form @submit.prevent="submitForm">
+                            <div class="form-group">
+                                <label class="form-label">Nome</label>
+                                <input v-model="form.name" type="text" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input v-model="form.email" type="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Mensagem</label>
+                                <textarea v-model="form.message" class="form-textarea" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%;" :disabled="submitting">
+                                <i class="fas fa-paper-plane"></i>
+                                {{ submitting ? 'Enviando...' : 'Enviar Mensagem' }}
+                            </button>
+                            <div v-if="formMessage" style="margin-top: 15px; padding: 15px; border-radius: 10px; text-align: center;" :style="{ background: formMessageType === 'success' ? 'rgba(78, 205, 196, 0.2)' : 'rgba(255, 107, 107, 0.2)', color: formMessageType === 'success' ? 'var(--accent-tertiary)' : 'var(--accent-secondary)' }">
+                                {{ formMessage }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <p>&copy; 2025 José Brito. Todos os direitos reservados.</p>
-                <div class="social-links">
-                    <a href="https://github.com/josevbrito" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/josevbrito" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com/josevbrito" target="_blank"><i class="fab fa-twitter"></i></a>
-                </div>
+        <footer class="footer">
+            <div class="social-links">
+                <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank" class="social-link">
+                    <i :class="social.icon"></i>
+                </a>
             </div>
+            <p style="color: var(--text-muted);">&copy; 2025 José Brito. Todos os direitos reservados.</p>
         </footer>
+        <script src="js/script.js"></script>
     </div>
-
-    <script src="script.js"></script>
 </body>
-</html>
