@@ -1,5 +1,5 @@
 /* Variáveis */
-:root {
+/* :root {
     --bg-primary: #0a0a0f;
     --bg-secondary: #1a1a2e;
     --bg-card: #16213e;
@@ -15,9 +15,9 @@
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
+} */
 
-/* :root {
+:root {
     --bg-primary: #0a0a0f;
     --bg-secondary: #101615;
     --bg-card: #0d1f1a;
@@ -37,7 +37,7 @@
     --gradient-primary: linear-gradient(135deg, #00ff9d 0%, #00cc7d 100%);
     --gradient-secondary: linear-gradient(135deg, #00ff9d 0%, #00e6a8 100%);
     --gradient-tertiary: linear-gradient(135deg, #00cc7d 0%, #00b374 100%);
-} */
+}
 
 * {
     margin: 0;
