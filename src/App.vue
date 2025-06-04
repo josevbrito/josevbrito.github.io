@@ -221,8 +221,8 @@ export default {
       {
         type: 'email',
         label: 'Email',
-        value: 'josevictorbritoc@gmail.com',
-        link: 'mailto:josevictorbritoc@gmail.com',
+        value: 'josevbrito.tech@gmail.com',
+        link: 'mailto:josevbrito.tech@gmail.com',
         icon: 'fas fa-envelope'
       },
       {
