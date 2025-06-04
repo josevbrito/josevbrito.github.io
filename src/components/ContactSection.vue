@@ -29,11 +29,11 @@
         </ul>
       </div>
       <div class="contact-form">
-        <form @submit.prevent="$emit('submit-form')">
+        <form @submit.prevent="submitForm">
           <div class="form-group">
             <label class="form-label">Nome</label>
             <input 
-              v-model="form.name" 
+              v-model="localForm.name" 
               type="text" 
               class="form-input" 
               required
@@ -42,7 +42,7 @@
           <div class="form-group">
             <label class="form-label">Email</label>
             <input 
-              v-model="form.email" 
+              v-model="localForm.email" 
               type="email" 
               class="form-input" 
               required
@@ -51,7 +51,7 @@
           <div class="form-group">
             <label class="form-label">Mensagem</label>
             <textarea 
-              v-model="form.message" 
+              v-model="localForm.message" 
               class="form-textarea" 
               rows="5" 
               required
@@ -61,20 +61,20 @@
             type="submit" 
             class="btn-primary" 
             style="width: 100%;" 
-            :disabled="submitting"
+            :disabled="localSubmitting"
           >
             <i class="fas fa-paper-plane"></i>
-            {{ submitting ? 'Enviando...' : 'Enviar Mensagem' }}
+            {{ localSubmitting ? 'Enviando...' : 'Enviar Mensagem' }}
           </button>
           <div 
-            v-if="formMessage" 
+            v-if="localFormMessage" 
             style="margin-top: 15px; padding: 15px; border-radius: 10px; text-align: center;" 
             :style="{ 
-              background: formMessageType === 'success' ? 'rgba(78, 205, 196, 0.2)' : 'rgba(255, 107, 107, 0.2)', 
-              color: formMessageType === 'success' ? 'var(--accent-tertiary)' : 'var(--accent-secondary)' 
+              background: localFormMessageType === 'success' ? 'rgba(78, 205, 196, 0.2)' : 'rgba(255, 107, 107, 0.2)', 
+              color: localFormMessageType === 'success' ? 'var(--accent-tertiary)' : 'var(--accent-secondary)' 
             }"
           >
-            {{ formMessage }}
+            {{ localFormMessage }}
           </div>
         </form>
       </div>
@@ -83,30 +83,82 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com'
+
 export default {
   name: 'ContactSection',
   props: {
     contactInfo: {
       type: Array,
       required: true
-    },
-    form: {
-      type: Object,
-      required: true
-    },
-    submitting: {
-      type: Boolean,
-      required: true
-    },
-    formMessage: {
-      type: String,
-      required: true
-    },
-    formMessageType: {
-      type: String,
-      required: true
     }
   },
-  emits: ['submit-form']
+  data() {
+    return {
+      localForm: {
+        name: '',
+        email: '',
+        message: ''
+      },
+      localSubmitting: false,
+      localFormMessage: '',
+      localFormMessageType: '',
+      emailjsConfig: {
+        serviceId: 'service_josevbrito',
+        templateId: 'contact_josevbrito', 
+        userId: 'xE-nOTgFgEG40ktOX'
+      }
+    }
+  },
+  methods: {
+    async submitForm() {
+      this.localSubmitting = true
+      this.localFormMessage = ''
+      
+      try {
+        const templateParams = {
+          from_name: this.localForm.name,
+          from_email: this.localForm.email,
+          message: this.localForm.message,
+          to_name: 'José Brito',
+          current_date: new Date().toLocaleDateString('pt-BR')
+        }
+
+        const response = await emailjs.send(
+          this.emailjsConfig.serviceId,
+          this.emailjsConfig.templateId,
+          templateParams,
+          this.emailjsConfig.userId
+        )
+
+        console.log('Email enviado com sucesso:', response)
+        
+        this.localFormMessage = 'Mensagem enviada com sucesso! Retornarei em breve.'
+        this.localFormMessageType = 'success'
+        
+        this.resetForm()
+        
+      } catch (error) {
+        console.error('Erro ao enviar email:', error)
+        
+        this.localFormMessage = 'Erro ao enviar mensagem. Tente novamente.'
+        this.localFormMessageType = 'error'
+      } finally {
+        this.localSubmitting = false
+        
+        setTimeout(() => {
+          this.localFormMessage = ''
+        }, 5000)
+      }
+    },
+    
+    resetForm() {
+      this.localForm = {
+        name: '',
+        email: '',
+        message: ''
+      }
+    }
+  }
 }
 </script>
