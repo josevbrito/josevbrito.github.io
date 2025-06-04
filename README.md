@@ -8,7 +8,7 @@
 
 **Desenvolvedor Full Stack & Cientista de Dados**
 
-[🌐 Demo](https://josevbrito.dev) • [📧 Contato](mailto:josevictorbritoc@gmail.com) • [💼 LinkedIn](https://linkedin.com/in/josevbrito)
+[🌐 Demo](https://josevbrito.dev) • [📧 Contato](mailto:josevbrito.tech@gmail.com) • [💼 LinkedIn](https://linkedin.com/in/josevbrito)
 
 </div>
 
@@ -87,8 +87,8 @@ Timeline educacional:
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/josevbrito/portfolio.git
-cd portfolio
+git clone https://github.com/josevbrito/josevbrito.github.io.git
+cd josevbrito.github.io
 ```
 
 2. **Execute localmente**
@@ -160,34 +160,6 @@ O portfólio é otimizado para diferentes dispositivos:
 @media (min-width: 1025px) { ... }
 ```
 
-## 🔧 Funcionalidades Técnicas
-
-### Navegação Suave
-```javascript
-// Scroll suave entre seções
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
-```
-
-### Animações de Entrada
-```css
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-}
-
-.fade-in-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-```
-
 ## 🌟 Recursos Avançados
 
 - **Intersection Observer**: Animações baseadas no scroll
@@ -195,20 +167,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 - **Custom Properties**: Tema customizável
 - **Progressive Enhancement**: Funciona sem JavaScript
 - **Semantic HTML**: Acessibilidade otimizada
-
-## 📈 Performance
-
-### Otimizações Implementadas
-- ✅ Lazy loading de imagens
-- ✅ CSS minificado
-- ✅ Recursos externos otimizados
-- ✅ Animações com GPU acceleration
-- ✅ Código semântico e limpo
-
-### Métricas Esperadas
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
 
 ## 🤝 Contribuições
 
@@ -228,7 +186,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **José Brito** - Desenvolvedor Full Stack & Cientista de Dados
 
-- 📧 **Email**: [josevictorbritoc@gmail.com](mailto:josevictorbritoc@gmail.com)
+- 📧 **Email**: [josevbrito.tech@gmail.com](mailto:josevbrito.tech@gmail.com)
 - 💼 **LinkedIn**: [/in/josevbrito](https://linkedin.com/in/josevbrito)
 - 🐱 **GitHub**: [/josevbrito](https://github.com/josevbrito)
 
