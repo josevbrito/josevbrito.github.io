@@ -14,6 +14,10 @@
           <i class="fas fa-envelope"></i>
           Entre em Contato
         </a>
+        <a href="/curriculo_jose_victor_brito_costa.pdf" class="btn-secondary" download>
+          <i class="fas fa-download"></i>
+          Baixar Currículo
+        </a>
       </div>
     </div>
   </section>
