@@ -16,7 +16,7 @@
             <div style="background: var(--bg-glass); color: var(--accent-primary); padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-size: 0.9rem;">
               {{ exp.period }}
             </div>
-            <p style="color: var(--text-secondary); white-space: pre-line;">{{ exp.description }}</p>
+            <!-- <p style="color: var(--text-secondary); white-space: pre-line;">{{ exp.description }}</p> -->
           </div>
         </div>
       </div>
