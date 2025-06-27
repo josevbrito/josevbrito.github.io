@@ -67,12 +67,12 @@ import { useContactData } from './data/contactData'
 
 // Components
 import Navigation from './components/Navigation.vue'
-import HeroSection from './components/HeroSection.vue'
-import AboutSection from './components/AboutSection.vue'
-import ExperienceSection from './components/ExperienceSection.vue'
-import ProjectsSection from './components/ProjectsSection.vue'
-import EducationSection from './components/EducationSection.vue'
-import ContactSection from './components/ContactSection.vue'
+import HeroSection from './views/HeroSection.vue'
+import AboutSection from './views/AboutSection.vue'
+import ExperienceSection from './data/ExperienceSection.vue'
+import ProjectsSection from './views/ProjectsSection.vue'
+import EducationSection from './views/EducationSection.vue'
+import ContactSection from './views/ContactSection.vue'
 import FooterSection from './components/FooterSection.vue'
 
 export default {
