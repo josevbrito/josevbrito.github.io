@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="particles-bg"></div>
+    <div class="background"></div>
     
     <Navigation 
       :scrolled="scrolled"

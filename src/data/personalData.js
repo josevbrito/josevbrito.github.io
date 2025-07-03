@@ -5,7 +5,7 @@ export function usePersonalData() {
     greeting: 'Olá, eu sou',
     name: 'José Brito',
     title: 'Desenvolvedor Full Stack & Cientista de Dados',
-    description: 'Criando experiências digitais excepcionais com foco em inovação e qualidade. Especializado em desenvolvimento web moderno e análise de dados.'
+    description: 'Criando experiências digitais com foco em inovação e qualidade. Especializado em desenvolvimento web moderno e análise de dados.'
   })
 
   const aboutText = reactive({

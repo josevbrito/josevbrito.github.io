@@ -4,11 +4,11 @@ export function useSkillsData() {
   const skills = ref([
     {
       name: 'Frontend',
-      items: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'HTML5 & CSS3', 'Flutter']
+      items: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'HTML5 & CSS3', 'Flutter', 'Angular']
     },
     {
       name: 'Backend',
-      items: ['PHP', 'Laravel', 'Nest.js', 'Python', 'Node.js', 'RESTful APIs', 'OOP', 'Microsserviços']
+      items: ['PHP', 'Laravel', 'Spring Boot', 'Nest.js', 'Python', 'Node.js', 'RESTful APIs', 'Microsserviços']
     },
     {
       name: 'Banco de Dados',
