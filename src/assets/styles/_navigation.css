@@ -179,7 +179,7 @@
 
 /* Media Queries - Responsividade */
 
-/* Tablets grandes e desktops pequenos */
+
 @media (max-width: 1024px) {
     .nav-menu {
         gap: 20px;
@@ -195,8 +195,7 @@
     }
 }
 
-/* Tablets */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
     .nav-container {
         top: 15px;
         left: 20px;
@@ -231,8 +230,7 @@
     }
 }
 
-/* Smartphones grandes */
-@media (max-width: 640px) {
+@media (max-width: 900px) {
     .desktop-menu {
         display: none;
     }

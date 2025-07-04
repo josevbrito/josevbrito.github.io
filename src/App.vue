@@ -5,39 +5,24 @@
     <Navigation 
       :scrolled="scrolled"
       :active-section="activeSection"
-      :projects-count="projects.length"
+      :projects-count="translations.projects.projectsList.length"
       @scroll-to="scrollToSection"
     />
 
     <div class="main-container">
       <HeroSection 
-        :greeting="personalInfo.greeting"
-        :name="personalInfo.name"
-        :title="personalInfo.title"
-        :description="personalInfo.description"
         @scroll-to="scrollToSection"
       />
 
-      <AboutSection 
-        :about-text="aboutText"
-        :skills="skills"
-      />
+      <AboutSection/>
 
-      <ExperienceSection
-        :experience="experience"
-        :years="experienceYears"
-      />
+      <ExperienceSection/>
 
-      <ProjectsSection
-        :projects="projects"
-      />
+      <ProjectsSection/>
 
-      <EducationSection
-        :education="education"
-      />
+      <EducationSection/>
 
       <ContactSection 
-        :contact-info="contactInfo"
         :form="form"
         :submitting="submitting"
         :form-message="formMessage"
@@ -46,24 +31,17 @@
       />
     </div>
 
-    <FooterSection :social-links="socialLinks" />
+    <FooterSection :social-links="translations.footer.socialLinks" />
   </div>
 </template>
 
 <script>
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, computed } from 'vue'
+import { state } from './translate/main'
 
 // Composables
 import { useScrollNavigation } from './composables/useScrollNavigation'
 import { useContactForm } from './composables/useContactForm'
-
-// Data
-import { usePersonalData } from './data/personalData'
-import { useSkillsData } from './data/skillsData'
-import { useExperienceData } from './data/experienceData'
-import { useProjectsData } from './data/projectsData'
-import { useEducationData } from './data/educationData'
-import { useContactData } from './data/contactData'
 
 // Components
 import Navigation from './components/Navigation.vue'
@@ -106,13 +84,7 @@ export default {
       handleFormSubmit
     } = useContactForm()
 
-    // Data
-    const { personalInfo, aboutText } = usePersonalData()
-    const { skills } = useSkillsData()
-    const { experience, experienceYears } = useExperienceData()
-    const { projects } = useProjectsData()
-    const { education } = useEducationData()
-    const { contactInfo, socialLinks } = useContactData()
+    const translations = computed(() => state.translations[state.currentLanguage])
 
     // Lifecycle
     onMounted(() => {
@@ -143,24 +115,12 @@ export default {
       scrolled,
       activeSection,
       scrollToSection,
-      
-      // Form
       form,
       submitting,
       formMessage,
       formMessageType,
       handleFormSubmit,
-      
-      // Data
-      personalInfo,
-      aboutText,
-      skills,
-      experience,
-      experienceYears,
-      projects,
-      education,
-      contactInfo,
-      socialLinks
+      translations
     }
   }
 }
