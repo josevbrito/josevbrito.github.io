@@ -1,15 +1,15 @@
 <template>
   <section id="contact" class="section">
-    <h2 class="section-title">Contato</h2>
+    <h2 class="section-title">{{ translations.contact.sectionTitleContact }}</h2>
     <div class="contact-container">
       <div class="contact-info">
-        <h3>Vamos conversar?</h3>
+        <h3>{{ translations.contact.subtitle }}</h3>
         <p style="color: var(--text-secondary); margin-bottom: 30px;">
-          Interessado em colaborar ou tem alguma pergunta? Ficarei feliz em conversar!
+          {{ translations.contact.message }}
         </p>
         <ul class="contact-list">
           <li 
-            v-for="contact in contactInfo" 
+            v-for="contact in translations.contact.contactList" 
             :key="contact.type" 
             class="contact-item"
           >
@@ -20,7 +20,9 @@
               <strong>{{ contact.label }}</strong><br>
               <a 
                 :href="contact.link" 
-                style="color: var(--text-secondary);"
+                style="color: var(--text-secondary);" 
+                target="_blank" 
+                rel="noopener"
               >
                 {{ contact.value }}
               </a>
@@ -28,10 +30,11 @@
           </li>
         </ul>
       </div>
+      <!--
       <div class="contact-form">
         <form @submit.prevent="submitForm">
           <div class="form-group">
-            <label class="form-label">Nome</label>
+            <label class="form-label">{{ translations.contact.form.name }}</label>
             <input 
               v-model="localForm.name" 
               type="text" 
@@ -40,7 +43,7 @@
             >
           </div>
           <div class="form-group">
-            <label class="form-label">Email</label>
+            <label class="form-label">{{ translations.contact.form.email }}</label>
             <input 
               v-model="localForm.email" 
               type="email" 
@@ -49,7 +52,7 @@
             >
           </div>
           <div class="form-group">
-            <label class="form-label">Mensagem</label>
+            <label class="form-label">{{ translations.contact.form.message }}</label>
             <textarea 
               v-model="localForm.message" 
               class="form-textarea" 
@@ -64,7 +67,7 @@
             :disabled="localSubmitting"
           >
             <i class="fas fa-paper-plane"></i>
-            {{ localSubmitting ? 'Enviando...' : 'Enviar Mensagem' }}
+            {{ localSubmitting ? translations.contact.form.sending : translations.contact.form.submit }}
           </button>
           <div 
             v-if="localFormMessage" 
@@ -78,19 +81,23 @@
           </div>
         </form>
       </div>
+      -->
     </div>
   </section>
 </template>
 
 <script>
 import emailjs from 'emailjs-com'
+import { state } from '../translate/main'
 
 export default {
   name: 'ContactSection',
-  props: {
-    contactInfo: {
-      type: Array,
-      required: true
+  computed: {
+    currentLanguage() {
+      return state.currentLanguage
+    },
+    translations() {
+      return state.translations[this.currentLanguage]
     }
   },
   data() {
@@ -105,7 +112,7 @@ export default {
       localFormMessageType: '',
       emailjsConfig: {
         serviceId: 'service_josevbrito',
-        templateId: 'contact_josevbrito', 
+        templateId: 'contact_josevbrito',
         userId: 'xE-nOTgFgEG40ktOX'
       }
     }
@@ -133,19 +140,15 @@ export default {
 
         console.log('Email enviado com sucesso:', response)
         
-        this.localFormMessage = 'Mensagem enviada com sucesso! Retornarei em breve.'
+        this.localFormMessage = this.translations.contact.form.success
         this.localFormMessageType = 'success'
-        
         this.resetForm()
-        
       } catch (error) {
         console.error('Erro ao enviar email:', error)
-        
-        this.localFormMessage = 'Erro ao enviar mensagem. Tente novamente.'
+        this.localFormMessage = this.translations.contact.form.error
         this.localFormMessageType = 'error'
       } finally {
         this.localSubmitting = false
-        
         setTimeout(() => {
           this.localFormMessage = ''
         }, 5000)
