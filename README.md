@@ -1,4 +1,4 @@
-# 🚀 Portfólio José Brito
+# 🚀 José Brito's Portfolio
 
 <div align="center">
 
@@ -6,112 +6,111 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-**Desenvolvedor Full Stack & Cientista de Dados**
+**Full Stack Developer & Data Scientist**
 
-[🌐 Demo](https://josevbrito.dev) • [📧 Contato](mailto:josevbrito.tech@gmail.com) • [💼 LinkedIn](https://linkedin.com/in/josevbrito)
+[🌐 Demo](https://josevbrito.dev) • [📧 Contact](mailto:josevbrito.tech@gmail.com) • [💼 LinkedIn](https://linkedin.com/in/josevbrito)
 
 </div>
 
 ---
 
-## 📋 Sobre o Projeto
+## 📋 About the Project
 
-Portfólio pessoal moderno e responsivo desenvolvido com Vue.js, apresentando projetos, habilidades e experiências profissionais. O design conta com efeitos visuais modernos, animações suaves e uma interface intuitiva com tema glassmorphism.
+Modern and responsive personal portfolio developed with Vue.js, showcasing projects, skills and professional experiences. The design features modern visual effects, smooth animations and an intuitive interface with glassmorphism theme.
 
-### ✨ Características Principais
+### ✨ Key Features
 
-- 🎨 **Design Moderno**: Interface com efeito glassmorphism e gradientes vibrantes
-- 📱 **Totalmente Responsivo**: Adaptável a todos os dispositivos
-- ⚡ **Performance Otimizada**: Carregamento rápido e animações suaves
-- 🎯 **Navegação Intuitiva**: Menu fixo com indicadores visuais
-- 💫 **Efeitos Visuais**: Partículas animadas e transições elegantes
-- 📬 **Formulário de Contato**: Sistema integrado para comunicação
+- 🎨 **Modern Design**: Interface with glassmorphism effect and vibrant gradients
+- 📱 **Fully Responsive**: Adaptable to all devices
+- ⚡ **Optimized Performance**: Fast loading and smooth animations
+- 🎯 **Intuitive Navigation**: Fixed menu with visual indicators
+- 💫 **Visual Effects**: Animated particles and elegant transitions
+- 📬 **Contact Form**: Integrated system for communication
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
 ### Frontend
-- **Vue.js 3** - Framework JavaScript reativo
-- **HTML5** - Estrutura semântica
-- **CSS3** - Estilização avançada com Grid e Flexbox
-- **JavaScript ES6+** - Funcionalidades interativas
+- **Vue.js 3** - Reactive JavaScript framework
+- **HTML5** - Semantic structure
+- **CSS3** - Advanced styling with Grid and Flexbox
+- **JavaScript ES6+** - Interactive functionalities
 
-### Bibliotecas e Recursos
-- **Font Awesome 6.4.0** - Ícones vetoriais
-- **Google Fonts** - Tipografia customizada
-- **CSS Animations** - Transições e efeitos visuais
+### Libraries and Resources
+- **Font Awesome 6.4.0** - Vector icons
+- **Google Fonts** - Custom typography
+- **CSS Animations** - Transitions and visual effects
 
+## 🎯 Portfolio Sections
 
-## 🎯 Seções do Portfólio
+### 🏠 Home (Hero)
+- Personal introduction
+- Main call-to-actions
+- Animated particles effect
 
-### 🏠 Início (Hero)
-- Apresentação pessoal
-- Call-to-actions principais
-- Efeito de partículas animadas
-
-### 👨‍💻 Sobre Mim
-- Biografia profissional
-- Habilidades técnicas categorizadas:
+### 👨‍💻 About Me
+- Professional biography
+- Categorized technical skills:
   - **Frontend**: Vue.js, React, JavaScript, TypeScript, HTML5 & CSS3, Flutter
   - **Backend**: PHP, Laravel, Nest.js, Python, Node.js, RESTful APIs
-  - **Banco de Dados**: PostgreSQL, MySQL, Firebase, NoSQL
+  - **Database**: PostgreSQL, MySQL, Firebase, NoSQL
   - **Cloud & DevOps**: Git/GitHub, Docker, CI/CD, Linux
   - **Data Science**: Python, Pandas, R, Machine Learning, Power BI
 
-### 💼 Projetos
-Showcase de 5 projetos principais:
+### 💼 Projects
+Showcase of 5 main projects:
 
-1. **Monitora Saúde** - Plataforma de indicadores de saúde
-2. **RENAVEH** - Sistema de notificações hospitalares
-3. **CADSERV** - Gerenciamento de servidores
-4. **HANS+** - App mobile para hanseníase
-5. **Maranhão Livre da Fome** - Sistema de acompanhamento social
+1. **Monitora Saúde** - Health indicators platform
+2. **RENAVEH** - Hospital notification system
+3. **CADSERV** - Server management
+4. **HANS+** - Mobile app for leprosy
+5. **Maranhão Livre da Fome** - Social monitoring system
 
-### 🎓 Formação
-Timeline educacional:
-- **Mestrado em Ciência da Computação** (UFMA - 2025-2027)
-- **Engenharia da Computação** (UFMA - 2021-2026)
-- **Ciência e Tecnologia** (UFMA - 2021-2024)
+### 🎓 Education
+Educational timeline:
+- **Master's in Computer Science** (UFMA - 2025-2027)
+- **Computer Engineering** (UFMA - 2021-2026)
+- **Science and Technology** (UFMA - 2021-2024)
 
-### 📞 Contato
-- Formulário integrado
-- Informações de contato
-- Links para redes sociais
+### 📞 Contact
+- Integrated form
+- Contact information
+- Social media links
 
-## 🚀 Como Executar
+## 🚀 How to Run
 
-### Pré-requisitos
-- Navegador web moderno
-- Servidor local (opcional)
+### Prerequisites
+- Modern web browser
+- Local server (optional)
 
-### Instalação Local
+### Local Installation
 
-1. **Clone o repositório**
+1. **Clone the repository**
 ```bash
 git clone https://github.com/josevbrito/josevbrito.github.io.git
 cd josevbrito.github.io
 ```
 
-2. **Execute localmente**
+2. **Run locally**
 ```bash
-# Opção 1: Abrir diretamente no navegador
+# Option 1: Open directly in browser
 open index.html
 
-# Opção 2: Servidor local com Python
+# Option 2: Local server with Python
 python -m http.server 8000
 
-# Opção 3: Servidor local com Node.js
+# Option 3: Local server with Node.js
 npx serve .
 ```
 
-3. **Acesse no navegador**
+3. **Access in browser**
 ```
 http://localhost:8000
 ```
 
-## 🎨 Personalização
+## 🎨 Customization
 
-### Cores e Tema
-As variáveis CSS principais estão definidas em `:root`:
+### Colors and Theme
+The main CSS variables are defined in `:root`:
 
 ```css
 :root {
@@ -124,29 +123,29 @@ As variáveis CSS principais estão definidas em `:root`:
 }
 ```
 
-### Adicionando Novos Projetos
-Para adicionar projetos, edite a seção `projects-grid` no HTML:
+### Adding New Projects
+To add projects, edit the `projects-grid` section in HTML:
 
 ```html
 <div class="project-card fade-in-up">
   <div class="project-image" style="background: linear-gradient(135deg, #color1, #color2);"></div>
   <div class="project-content">
-    <h3 class="project-title">Nome do Projeto</h3>
-    <p class="project-description">Descrição do projeto...</p>
+    <h3 class="project-title">Project Name</h3>
+    <p class="project-description">Project description...</p>
     <div class="tech-stack">
-      <span class="tech-tag">Tecnologia</span>
+      <span class="tech-tag">Technology</span>
     </div>
   </div>
 </div>
 ```
 
-## 📱 Responsividade
+## 📱 Responsiveness
 
-O portfólio é otimizado para diferentes dispositivos:
+The portfolio is optimized for different devices:
 
-- **Desktop**: Layout completo com sidebar fixa
-- **Tablet**: Navegação adaptável
-- **Mobile**: Menu hambúrguer e layout vertical
+- **Desktop**: Complete layout with fixed sidebar
+- **Tablet**: Adaptable navigation
+- **Mobile**: Hamburger menu and vertical layout
 
 ### Breakpoints
 ```css
@@ -160,31 +159,31 @@ O portfólio é otimizado para diferentes dispositivos:
 @media (min-width: 1025px) { ... }
 ```
 
-## 🌟 Recursos Avançados
+## 🌟 Advanced Features
 
-- **Intersection Observer**: Animações baseadas no scroll
-- **CSS Grid & Flexbox**: Layout responsivo moderno  
-- **Custom Properties**: Tema customizável
-- **Progressive Enhancement**: Funciona sem JavaScript
-- **Semantic HTML**: Acessibilidade otimizada
+- **Intersection Observer**: Scroll-based animations
+- **CSS Grid & Flexbox**: Modern responsive layout
+- **Custom Properties**: Customizable theme
+- **Progressive Enhancement**: Works without JavaScript
+- **Semantic HTML**: Optimized accessibility
 
-## 🤝 Contribuições
+## 🤝 Contributions
 
-Sugestões e melhorias são sempre bem-vindas!
+Suggestions and improvements are always welcome!
 
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/improvement`)
-3. Commit suas mudanças (`git commit -m 'Add some improvement'`)
-4. Push para a branch (`git push origin feature/improvement`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -m 'Add some improvement'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Open a Pull Request
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.
 
-## 📞 Contato
+## 📞 Contact
 
-**José Brito** - Desenvolvedor Full Stack & Cientista de Dados
+**José Brito** - Full Stack Developer & Data Scientist
 
 - 📧 **Email**: [josevbrito.tech@gmail.com](mailto:josevbrito.tech@gmail.com)
 - 💼 **LinkedIn**: [/in/josevbrito](https://linkedin.com/in/josevbrito)
@@ -194,8 +193,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 <div align="center">
 
-**⭐ Se este projeto te ajudou, considere dar uma estrela!**
+**⭐ If this project helped you, consider giving it a star!**
 
-*Desenvolvido com ❤️ e ☕ por José Brito*
+*Developed with ❤️ and ☕ by José Brito*
 
 </div>
