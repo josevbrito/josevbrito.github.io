@@ -2,6 +2,7 @@ const education = {
   pt: {
     sectionTitleEducation: 'Educação',
     list: [
+      /*
       {
         id: 1,
         degree: 'Mestrado em Ciência da Computação',
@@ -9,6 +10,7 @@ const education = {
         period: '2025 - 2027 (Previsão)',
         description: 'Programa de pós-graduação focado em áreas como Inteligência Artificial, Aprendizado de Máquina, Desenvolvimento de Software e Pesquisa Aplicada.'
       },
+      */
       {
         id: 2,
         degree: 'Pós-Graduação - Engenharia DevOps',
@@ -35,6 +37,7 @@ const education = {
   en: {
     sectionTitleEducation: 'Education',
     list: [
+      /*
       {
         id: 1,
         degree: 'Master’s in Computer Science',
@@ -42,6 +45,7 @@ const education = {
         period: '2025 - 2027 (Expected)',
         description: 'Graduate program focused on areas such as Artificial Intelligence, Machine Learning, Software Development, and Applied Research.'
       },
+      */
       {
         id: 2,
         degree: 'Postgraduate Degree - DevOps Engineering',
@@ -68,6 +72,7 @@ const education = {
   es: {
     sectionTitleEducation: 'Educación',
     list: [
+      /*
       {
         id: 1,
         degree: 'Maestría en Ciencia de la Computación',
@@ -75,6 +80,7 @@ const education = {
         period: '2025 - 2027 (Previsto)',
         description: 'Programa de posgrado centrado en Inteligencia Artificial, Aprendizaje Automático, Desarrollo de Software e Investigación Aplicada.'
       },
+      */
       {
         id: 2,
         degree: 'Posgrado - Ingeniería DevOps',
@@ -101,6 +107,7 @@ const education = {
   zh: {
     sectionTitleEducation: '教育背景',
     list: [
+      /*
       {
         id: 1,
         degree: '计算机科学硕士',
@@ -108,6 +115,7 @@ const education = {
         period: '2025 - 2027（预计）',
         description: '研究生课程，专注于人工智能、机器学习、软件开发和应用研究等领域。'
       },
+      */
       {
         id: 2,
         degree: '研究生课程 - DevOps 工程',

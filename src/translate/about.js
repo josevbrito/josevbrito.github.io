@@ -1,6 +1,6 @@
 const about = {
   pt: {
-    paragraph: 'Sou desenvolvedor de software com experiência em desenvolvimento web e mobile (frontend e backend), utilizando tecnologias como PHP (Laravel), Vue.js, Flutter, Python, Nest.js, JavaScript e TypeScript. Participei de projetos voltados à saúde pública, da concepção à implantação, e atualmente curso Mestrado em Ciência da Computação com foco em inteligência artificial, aprendizado de máquina e desenvolvimento de soluções tecnológicas aplicadas.',
+    paragraph: 'Sou Desenvolvedor de Software e Cientista de Dados, formado em Ciência e Tecnologia pela Universidade Federal do Maranhão (UFMA), tenho experiência em desenvolvimento web e mobile (frontend e backend), utilizando tecnologias como PHP (Laravel), Vue.js, Flutter, Python, Java, Nest.js, JavaScript e TypeScript. Participei de projetos voltados à saúde pública, da concepção à implantação, e atualmente curso Engenharia da Computação pela UFMA à noite.',
     skills: {
       Frontend: {
         name: 'Frontend',
@@ -30,7 +30,7 @@ const about = {
   },
 
   en: {
-    paragraph: "I'm a software developer with experience in web and mobile development (frontend and backend), using technologies such as PHP (Laravel), Vue.js, Flutter, Python, Nest.js, JavaScript, and TypeScript. I've participated in public health projects from conception to deployment, and I'm currently pursuing a Master's in Computer Science focused on artificial intelligence, machine learning, and the development of applied tech solutions.",
+    paragraph: 'I am a Software Developer and Data Scientist, graduated in Science and Technology from the Federal University of Maranhão (UFMA). I have experience in web and mobile development (frontend and backend), using technologies such as PHP (Laravel), Vue.js, Flutter, Python, Java, Nest.js, JavaScript, and TypeScript. I have participated in public health projects from conception to deployment, and I am currently pursuing a degree in Computer Engineering at UFMA during the evening.',
     skills: {
       Frontend: {
         name: 'Frontend',
@@ -60,7 +60,7 @@ const about = {
   },
 
   es: {
-    paragraph: 'Soy desarrollador de software con experiencia en desarrollo web y móvil (frontend y backend), utilizando tecnologías como PHP (Laravel), Vue.js, Flutter, Python, Nest.js, JavaScript y TypeScript. He participado en proyectos de salud pública desde la concepción hasta la implementación y actualmente curso una Maestría en Ciencias de la Computación centrada en inteligencia artificial, aprendizaje automático y desarrollo de soluciones tecnológicas aplicadas.',
+    paragraph: 'Soy Desarrollador de Software y Científico de Datos, graduado en Ciencia y Tecnología por la Universidad Federal de Maranhão (UFMA). Tengo experiencia en desarrollo web y móvil (frontend y backend), utilizando tecnologías como PHP (Laravel), Vue.js, Flutter, Python, Java, Nest.js, JavaScript y TypeScript. He participado en proyectos de salud pública desde la concepción hasta la implementación y actualmente estudio Ingeniería Informática en la UFMA por la noche.',
     skills: {
       Frontend: {
         name: 'Frontend',
@@ -90,7 +90,7 @@ const about = {
   },
 
   zh: {
-    paragraph: '我是一名软件开发人员，具有网页和移动端开发经验（前端和后端），擅长使用 PHP（Laravel）、Vue.js、Flutter、Python、Nest.js、JavaScript 和 TypeScript 等技术。我参与了多个公共卫生项目，从构思到部署，并且目前正在攻读计算机科学硕士，研究方向为人工智能、机器学习以及应用型技术解决方案的开发。',
+    paragraph: '我是一名软件开发工程师兼数据科学家，毕业于马拉尼昂联邦大学（UFMA）的科学与技术专业，拥有网页与移动端开发（前端和后端）经验，使用的技术包括 PHP（Laravel）、Vue.js、Flutter、Python、Java、Nest.js、JavaScript 和 TypeScript。我参与了多个公共卫生项目，从构思到部署，并且目前在 UFMA 夜校攻读计算机工程学位。',
     skills: {
       Frontend: {
         name: '前端开发',
