@@ -30,7 +30,6 @@
           </li>
         </ul>
       </div>
-      <!--
       <div class="contact-form">
         <form @submit.prevent="submitForm">
           <div class="form-group">
@@ -81,7 +80,6 @@
           </div>
         </form>
       </div>
-      -->
     </div>
   </section>
 </template>
