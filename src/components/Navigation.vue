@@ -4,59 +4,47 @@
       <!-- Menu Desktop -->
       <ul class="nav-menu desktop-menu">
         <li class="nav-item">
-          <a href="#home" 
-            class="nav-link" 
-            :class="{ active: activeSection === 'home' }"
-            @click.prevent="$emit('scroll-to', 'home')">
+          <router-link to="/"
+            class="nav-link">
             <i class="fas fa-home"></i>
             {{ translations[currentLanguage].navigation.home_nav }}
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a href="#about" 
-            class="nav-link" 
-            :class="{ active: activeSection === 'about' }"
-            @click.prevent="$emit('scroll-to', 'about')">
+          <router-link to="/about"
+            class="nav-link">
             <i class="fas fa-user"></i>
             {{ translations[currentLanguage].navigation.about_nav }}
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a href="#experience" 
-            class="nav-link" 
-            :class="{ active: activeSection === 'experience' }"
-            @click.prevent="$emit('scroll-to', 'experience')">
+          <router-link to="/experience"
+            class="nav-link">
             <i class="fas fa-briefcase"></i>
             {{ translations[currentLanguage].navigation.experience_nav }}
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a href="#projects" 
-            class="nav-link" 
-            :class="{ active: activeSection === 'projects' }"
-            @click.prevent="$emit('scroll-to', 'projects')">
+          <router-link to="/projects"
+            class="nav-link">
             <i class="fas fa-code"></i>
             {{ translations[currentLanguage].navigation.projects_nav }}
             <span class="project-counter">{{ projectsCount }}</span>
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a href="#education" 
-            class="nav-link" 
-            :class="{ active: activeSection === 'education' }"
-            @click.prevent="$emit('scroll-to', 'education')">
+          <router-link to="/education"
+            class="nav-link">
             <i class="fas fa-graduation-cap"></i>
             {{ translations[currentLanguage].navigation.education_nav }}
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a href="#contact" 
-            class="nav-link" 
-            :class="{ active: activeSection === 'contact' }"
-            @click.prevent="$emit('scroll-to', 'contact')">
+          <router-link to="/contact"
+            class="nav-link">
             <i class="fas fa-envelope"></i>
             {{ translations[currentLanguage].navigation.contact_nav }}
-          </a>
+          </router-link>
         </li>
         <li class="nav-item language-switcher">
           <button @click="toggleLanguage" class="language-toggle">
@@ -88,59 +76,53 @@
         <div class="mobile-menu" @click.stop>
           <ul class="mobile-menu-list">
               <li class="mobile-nav-item">
-                <a href="#home" 
-                  class="mobile-nav-link" 
-                  :class="{ active: activeSection === 'home' }"
-                  @click.prevent="scrollAndClose('home')">
+                <router-link to="/"
+                  class="mobile-nav-link"
+                  @click="closeMobileMenu">
                   <i class="fas fa-home"></i>
                   <span>{{ translations[currentLanguage].navigation.home_nav }}</span>
-                </a>
+                </router-link>
               </li>
               <li class="mobile-nav-item">
-                <a href="#about" 
-                  class="mobile-nav-link" 
-                  :class="{ active: activeSection === 'about' }"
-                  @click.prevent="scrollAndClose('about')">
+                <router-link to="/about"
+                  class="mobile-nav-link"
+                  @click="closeMobileMenu">
                   <i class="fas fa-user"></i>
                   <span>{{ translations[currentLanguage].navigation.about_nav }}</span>
-                </a>
+                </router-link>
               </li>
               <li class="mobile-nav-item">
-                <a href="#experience" 
-                  class="mobile-nav-link" 
-                  :class="{ active: activeSection === 'experience' }"
-                  @click.prevent="scrollAndClose('experience')">
+                <router-link to="/experience"
+                  class="mobile-nav-link"
+                  @click="closeMobileMenu">
                   <i class="fas fa-briefcase"></i>
                   <span>{{ translations[currentLanguage].navigation.experience_nav }}</span>
-                </a>
+                </router-link>
               </li>
               <li class="mobile-nav-item">
-                <a href="#projects" 
-                  class="mobile-nav-link" 
-                  :class="{ active: activeSection === 'projects' }"
-                  @click.prevent="scrollAndClose('projects')">
+                <router-link to="/projects"
+                  class="mobile-nav-link"
+                  @click="closeMobileMenu">
                   <i class="fas fa-code"></i>
                   <span>{{ translations[currentLanguage].navigation.projects_nav }}</span>
                   <span class="project-counter">{{ projectsCount }}</span>
-                </a>
+                </router-link>
               </li>
               <li class="mobile-nav-item">
-                <a href="#education" 
-                  class="mobile-nav-link" 
-                  :class="{ active: activeSection === 'education' }"
-                  @click.prevent="scrollAndClose('education')">
+                <router-link to="/education"
+                class="mobile-nav-link"
+                @click="closeMobileMenu">
                   <i class="fas fa-graduation-cap"></i>
                   <span>{{ translations[currentLanguage].navigation.education_nav }}</span>
-                </a>
+                </router-link>
               </li>
               <li class="mobile-nav-item">
-                <a href="#contact" 
-                  class="mobile-nav-link" 
-                  :class="{ active: activeSection === 'contact' }"
-                  @click.prevent="scrollAndClose('contact')">
+                <router-link to="/contact"
+                  class="mobile-nav-link"
+                  @click="closeMobileMenu">
                   <i class="fas fa-envelope"></i>
                   <span>{{ translations[currentLanguage].navigation.contact_nav }}</span>
-                </a>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -160,13 +142,9 @@ export default {
       type: Boolean,
       default: false
     },
-    activeSection: {
-      type: String,
-      default: 'home'
-    },
     projectsCount: {
       type: Number,
-      default: 0
+      default: 5
     }
   },
   data() {
@@ -201,7 +179,7 @@ export default {
       }
     }
   },
-  emits: ['scroll-to'],
+  emits: [], 
   methods: {
     toggleMobileMenu() {
       this.mobileMenuOpen = !this.mobileMenuOpen;
@@ -210,10 +188,6 @@ export default {
     closeMobileMenu() {
       this.mobileMenuOpen = false;
       document.body.style.overflow = '';
-    },
-    scrollAndClose(section) {
-      this.$emit('scroll-to', section);
-      this.closeMobileMenu();
     },
     toggleLanguage() {
       globalToggleLanguage();
