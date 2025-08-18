@@ -40,23 +40,6 @@
     font-size: 1.2rem;
 }
 
-.skill-list {
-    list-style: none;
-}
-
-.skill-item {
-    padding: 5px 0;
-    color: var(--text-secondary);
-    position: relative;
-    padding-left: 20px;
-}
-
-.skill-item::before {
-    content: '▸';
-    color: var(--accent-primary);
-    position: absolute;
-    left: 0;
-}
 
 .timeline {
     position: relative;
