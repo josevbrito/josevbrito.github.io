@@ -54,22 +54,41 @@ export default {
 
 <style scoped>
 
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 100px 0;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+}
+
 .hero-greeting {
   font-size: 1.5rem;
   color: var(--accent-primary);
   margin-bottom: 10px;
   font-weight: 500;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.2s forwards;
 }
 
 .hero-name {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 15px;
-  background: var(--gradient-primary);
+  background: var(--gradient-primary);  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.1;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.4s forwards;
 }
 
 .hero-title {
@@ -77,7 +96,10 @@ export default {
   font-weight: 600;
   color: var(--text-secondary);
   margin-bottom: 25px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.6s forwards;
 }
+
 
 .hero-description {
   font-size: 1.2rem;
@@ -85,6 +107,8 @@ export default {
   color: var(--text-muted);
   max-width: 700px;
   margin: 0 auto 40px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.8s forwards;
 }
 
 .hero-cta {
@@ -92,7 +116,11 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1s forwards;
 }
+
+
 
 .btn-primary,
 .btn-secondary {
