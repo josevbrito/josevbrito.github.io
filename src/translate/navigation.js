@@ -15,22 +15,6 @@ const navigation = {
     education_nav: 'Education',
     contact_nav: 'Contact',
   },
-  es: {
-    home_nav: 'Inicio',
-    about_nav: 'Acerca',
-    experience_nav: 'Experiencia',
-    projects_nav: 'Proyectos',
-    education_nav: 'Educación',
-    contact_nav: 'Contacto'
-  },
-  zh: {
-    home_nav: '首页',
-    about_nav: '关于',
-    experience_nav: '经历',
-    projects_nav: '项目',
-    education_nav: '教育',
-    contact_nav: '联系'
-  }
 }
 
 export default navigation

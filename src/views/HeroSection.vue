@@ -42,8 +42,6 @@ export default {
       const languageMap = {
         'pt': '/curriculum/jose_victor_brito_costa_pt.pdf',
         'en': '/curriculum/jose_victor_brito_costa_en.pdf',
-        'es': '/curriculum/jose_victor_brito_costa_es.pdf',
-        'zh': '/curriculum/jose_victor_brito_costa_zh.pdf'
       };
       return languageMap[this.currentLanguage] || '/curriculum/jose_victor_brito_costa_en.pdf';
     }

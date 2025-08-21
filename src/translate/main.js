@@ -35,35 +35,11 @@ export const state = reactive({
       footer: footer.en
 
     },
-
-    es: {
-      navigation: navigation.es,
-      hero: hero.es,
-      about: about.es,
-      experience: experience.es,
-      projects: projects.es,
-      education: education.es,
-      contact: contact.es,
-      footer: footer.es
-
-    },
-
-    zh: {
-      navigation: navigation.zh,
-      hero: hero.zh,
-      about: about.zh,
-      experience: experience.zh,
-      projects: projects.zh,
-      education: education.zh,
-      contact: contact.zh,
-      footer: footer.zh
-
-    }
   }
 });
 
 export function toggleLanguage() {
-  const languages = ['en', 'pt', 'es', 'zh'];
+  const languages = ['en', 'pt'];
   const currentIndex = languages.indexOf(state.currentLanguage);
   const nextIndex = (currentIndex + 1) % languages.length;
   state.currentLanguage = languages[nextIndex];

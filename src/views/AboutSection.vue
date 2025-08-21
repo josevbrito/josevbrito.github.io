@@ -81,14 +81,10 @@ export default {
         sectionTitle: {
           pt: 'Sobre Mim',
           en: 'About Me',
-          es: 'Sobre Mí',
-          zh: '关于我'
         }[this.currentLanguage],
         skillsTitle: {
           pt: 'Tecnologias & Habilidades',
           en: 'Technologies & Skills',
-          es: 'Tecnologías y Habilidades',
-          zh: '技术与技能'
         }[this.currentLanguage],
         about: state.translations[this.currentLanguage].about
       }

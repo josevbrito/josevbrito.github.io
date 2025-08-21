@@ -163,8 +163,6 @@ export default {
       switch (this.currentLanguage) {
         case 'en': return '/flags/uk.png'; 
         case 'pt': return '/flags/brazil.jpg';  
-        case 'es': return '/flags/spain.png'; 
-        case 'zh': return '/flags/china.png';
         default: return '/flags/uk.png';
       }
     },
@@ -172,9 +170,7 @@ export default {
     flagAltText() {
       switch (this.currentLanguage) {
         case 'en': return 'Mudar para Português';
-        case 'pt': return 'Cambiar a Español';
-        case 'es': return '切换到中文';
-        case 'zh': return 'Switch to English';
+        case 'pt': return 'Switch to English';
         default: return 'Language Flag';
       }
     }
