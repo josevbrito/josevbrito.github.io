@@ -13,20 +13,20 @@
             :key="contact.type" 
             class="contact-item"
           >
-            <div class="contact-icon">
-              <i :class="contact.icon"></i>
-            </div>
-            <div>
-              <strong>{{ contact.label }}</strong><br>
-              <a 
-                :href="contact.link" 
-                style="color: var(--text-secondary);" 
-                target="_blank" 
-                rel="noopener"
-              >
-                {{ contact.value }}
-              </a>
-            </div>
+            <a 
+              :href="contact.link" 
+              target="_blank" 
+              rel="noopener"
+              class="contact-link"
+            >
+              <div class="contact-icon">
+                <i :class="contact.icon"></i>
+              </div>
+              <div>
+                <strong>{{ contact.label }}</strong><br>
+                <span>{{ contact.value }}</span>
+              </div>
+            </a>
           </li>
         </ul>
       </div>
@@ -61,7 +61,7 @@
           </div>
           <button 
             type="submit" 
-            class="btn-primary" 
+            class="btn-primary flex items-center justify-center gap-2" 
             style="width: 100%;" 
             :disabled="localSubmitting"
           >
@@ -166,34 +166,34 @@ export default {
 
 <style scoped>
 
-.contact-container {
+  .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     max-width: 1000px;
     margin: 0 auto;
-}
+  }
 
-.contact-form {
+  .contact-form {
     background: var(--bg-card);
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-}
+  }
 
-.form-group {
+  .form-group {
     margin-bottom: 25px;
-}
+  }
 
-.form-label {
+  .form-label {
     display: block;
     margin-bottom: 8px;
     color: var(--text-primary);
     font-weight: 500;
-}
+  }
 
-.form-input, .form-textarea {
+  .form-input, .form-textarea {
     width: 100%;
     padding: 15px;
     background: var(--bg-glass);
@@ -202,25 +202,25 @@ export default {
     color: var(--text-primary);
     font-family: inherit;
     transition: all 0.3s ease;
-}
+  }
 
-.form-input:focus, .form-textarea:focus {
+  .form-input:focus, .form-textarea:focus {
     outline: none;
     border-color: var(--accent-primary);
     box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-}
+  }
 
-.contact-info h3 {
+  .contact-info h3 {
     color: var(--accent-primary);
     margin-bottom: 20px;
     font-size: 1.5rem;
-}
+  }
 
-.contact-list {
+  .contact-list {
     list-style: none;
-}
+  }
 
-.contact-item {
+  .contact-item {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -229,22 +229,80 @@ export default {
     background: var(--bg-glass);
     border-radius: 10px;
     transition: all 0.3s ease;
-}
+  }
 
-.contact-item:hover {
+  .contact-item:hover {
     background: var(--bg-card);
     transform: translateX(10px);
-}
+  }
 
-.contact-icon {
+  .contact-icon {
     width: 40px;
     height: 40px;
     background: var(--gradient-tertiary);
     border-radius: 50%;
     display: flex;
+    margin-right: 20px;
     align-items: center;
     justify-content: center;
     color: var(--text-primary);
-}
+  }
 
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+
+  .contact-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-link:hover {
+    color: var(--primary-color);
+  }
+
+
+  @media (max-width: 768px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      flex-direction: column-reverse;
+      gap: 40px;
+    }
+
+    .contact-info {
+      text-align: center;
+    }
+    
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .contact-item {
+      padding: 0;
+    }
+
+    .contact-icon {
+      margin-right: 0;
+    }
+
+    .contact-item:hover {
+      transform: none;
+    }
+
+    .contact-item div:last-child {
+      display: none;
+    }
+  }
 </style>
