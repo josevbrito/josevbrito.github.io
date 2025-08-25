@@ -2,6 +2,13 @@
   <section id="about" class="section">
     <h2 class="section-title">{{ translations.sectionTitle }}</h2>
     <div class="about-container">
+      <div class="paragraph-side">
+        <div class="paragraph-card">
+          <div class="paragraph-content">
+            <p class="paragraph-text">{{ translations.about.paragraph }}</p>
+          </div>
+        </div>
+      </div>
       <div class="photo-side">
         <div class="photo-container">
           <div class="photo-placeholder">
@@ -16,35 +23,23 @@
       </div>
 
       <div class="skills-side">
-        <h3 class="skills-title">{{ translations.skillsTitle }}</h3>
+        <!-- <h3 class="skills-title">{{ translations.skillsTitle }}</h3> -->
         <div class="skills-overview">
-            <div 
-              v-for="(category, index) in skillCategories" 
-              :key="category.name"
-              class="skill-category-card"
-              @click="openModal(index)"
-            >
+          <div
+            v-for="(category, index) in skillCategories" 
+            :key="category.name"
+            class="skill-category-card"
+            @click="openModal(index)"
+          >
             <div class="category-header">
               <div class="category-icon-wrapper">
                 <span class="category-icon" v-html="getCategoryIcon(category.name)"></span>
               </div>
               <h4 class="category-title">{{ category.name }}</h4>
-              <div class="tech-count">{{ category.items.length }} techs</div>
             </div>
-            <div class="tech-preview">
-              <div 
-                v-for="(tech, techIndex) in category.items.slice(0, 3)" 
-                :key="tech"
-                class="tech-preview-badge"
-                :style="getTechStyle(tech)"
-              >
-                <span class="tech-icon" v-html="getTechIcon(tech)"></span>
-              </div>
-              <div v-if="category.items.length > 3" class="more-indicator">
-                +{{ category.items.length - 3 }}
-              </div>
+            <div class="click-hint">
+              {{ currentLanguage === 'pt' ? 'Clique para ver as tecnologias' : 'Click to see technologies' }}
             </div>
-            <div class="click-hint">Clique para ver todas</div>
           </div>
         </div>
       </div>
@@ -71,12 +66,9 @@
               class="tech-badge-full"
               :style="getTechStyle(tech)"
             >
-              <div class="badge-icon">
-                <span v-html="getTechIcon(tech)"></span>
-              </div>
+              <span v-html="getTechIcon(tech)"></span>
               <div class="badge-content">
                 <span class="badge-name">{{ tech }}</span>
-                <div class="badge-glow"></div>
               </div>
             </div>
           </div>
@@ -160,15 +152,21 @@ export default {
         'Spring Boot': 'springboot',
         'Nest.js': 'nestjs',
         'Python': 'python',
+        'Pytorch': 'pytorch',
+        'Keras': 'keras',
         'Node.js': 'nodejs',
-        'RESTful APIs': 'rest',
+        'Redis': 'redis',
+        'RESTful APIs': 'restfulapi',
         'Microsserviços': 'microservices',
         'Microservices': 'microservices',
         'PostgreSQL': 'postgresql',
         'MySQL': 'mysql',
         'Firebase': 'firebase',
+        'SQL': 'sql',
         'NoSQL': 'nosql',
-        'Git/GitHub': 'github',
+        'GitHub': 'github',
+        'Git': 'git',
+        'GitLab': 'gitlab',
         'Docker': 'docker',
         'CI/CD': 'cicd',
         'Linux': 'linux',
@@ -176,13 +174,13 @@ export default {
         'Apache': 'apache',
         'Pandas': 'pandas',
         'R': 'r',
-        'Scikit-learn': 'scikit-learn',
-        'Machine Learning': 'machine-learning',
+        'Scikit-learn': 'scikitlearn',
+        'Machine Learning': 'machinelearning',
         'Power BI': 'powerbi',
-        'Análise de Dados': 'data-analysis',
-        'Data Analysis': 'data-analysis',
-        'Modelagem de Dados': 'data-modeling',
-        'Data Modeling': 'data-modeling',
+        'Análise de Dados': 'dataanalysis',
+        'Data Analysis': 'dataanalysis',
+        'Modelagem de Dados': 'datamodeling',
+        'Data Modeling': 'datamodeling',
         'Metodologias Ágeis': 'agile',
         'Agile Methodologies': 'agile'
       };
@@ -196,36 +194,54 @@ export default {
         'React': { bg: 'rgba(97, 218, 251, 0.1)', border: '#61DAFB', color: '#61DAFB', shadow: '0 4px 15px rgba(97, 218, 251, 0.3)' },
         'JavaScript': { bg: 'rgba(247, 223, 30, 0.1)', border: '#F7DF1E', color: '#F7DF1E', shadow: '0 4px 15px rgba(247, 223, 30, 0.3)' },
         'TypeScript': { bg: 'rgba(0, 122, 204, 0.1)', border: '#007ACC', color: '#007ACC', shadow: '0 4px 15px rgba(0, 122, 204, 0.3)' },
-        'HTML5 & CSS3': { bg: 'rgba(255, 99, 71, 0.1)', border: '#FF6347', color: '#FF6347', shadow: '0 4px 15px rgba(255, 99, 71, 0.3)' },
+        'HTML5': { bg: 'rgba(227, 79, 38, 0.1)', border: '#E34F26', color: '#E34F26', shadow: '0 4px 15px rgba(227, 79, 38, 0.3)' },
+        'CSS3': { bg: 'rgba(38, 77, 228, 0.1)', border: '#264DE4', color: '#264DE4', shadow: '0 4px 15px rgba(38, 77, 228, 0.3)' },
         'Flutter': { bg: 'rgba(2, 169, 244, 0.1)', border: '#02A9F4', color: '#02A9F4', shadow: '0 4px 15px rgba(2, 169, 244, 0.3)' },
         'Angular': { bg: 'rgba(221, 0, 49, 0.1)', border: '#DD0031', color: '#DD0031', shadow: '0 4px 15px rgba(221, 0, 49, 0.3)' },
         'PHP': { bg: 'rgba(119, 123, 180, 0.1)', border: '#777BB4', color: '#777BB4', shadow: '0 4px 15px rgba(119, 123, 180, 0.3)' },
         'Laravel': { bg: 'rgba(255, 45, 32, 0.1)', border: '#FF2D20', color: '#FF2D20', shadow: '0 4px 15px rgba(255, 45, 32, 0.3)' },
+        'SQL': { bg: 'rgba(255, 45, 32, 0.1)', border: '#FF2D20', color: '#FF2D20', shadow: '0 4px 15px rgba(255, 45, 32, 0.3)' },
         'Spring Boot': { bg: 'rgba(106, 186, 62, 0.1)', border: '#6ABA3E', color: '#6ABA3E', shadow: '0 4px 15px rgba(106, 186, 62, 0.3)' },
         'Nest.js': { bg: 'rgba(234, 0, 105, 0.1)', border: '#EA0069', color: '#EA0069', shadow: '0 4px 15px rgba(234, 0, 105, 0.3)' },
         'Python': { bg: 'rgba(55, 118, 171, 0.1)', border: '#3776AB', color: '#3776AB', shadow: '0 4px 15px rgba(55, 118, 171, 0.3)' },
+        'Pytorch': { bg: 'rgba(249, 74, 41, 0.1)', border: '#F94A29', color: '#F94A29', shadow: '0 4px 15px rgba(249, 74, 41, 0.3)' },
+        'Keras': { bg: 'rgba(206, 18, 52, 0.1)', border: '#CE1234', color: '#CE1234', shadow: '0 4px 15px rgba(206, 18, 52, 0.3)' },
         'Node.js': { bg: 'rgba(104, 160, 99, 0.1)', border: '#68A063', color: '#68A063', shadow: '0 4px 15px rgba(104, 160, 99, 0.3)' },
+        'Redis': { bg: 'rgba(228, 0, 0, 0.1)', border: '#D82C20', color: '#D82C20', shadow: '0 4px 15px rgba(228, 0, 0, 0.3)' },
         'RESTful APIs': { bg: 'rgba(0, 255, 157, 0.1)', border: '#00FF9D', color: '#00FF9D', shadow: '0 4px 15px rgba(0, 255, 157, 0.3)' },
         'Microsserviços': { bg: 'rgba(255, 193, 7, 0.1)', border: '#FFC107', color: '#FFC107', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' },
         'Microservices': { bg: 'rgba(255, 193, 7, 0.1)', border: '#FFC107', color: '#FFC107', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' },
         'PostgreSQL': { bg: 'rgba(51, 103, 145, 0.1)', border: '#336791', color: '#336791', shadow: '0 4px 15px rgba(51, 103, 145, 0.3)' },
         'MySQL': { bg: 'rgba(0, 117, 143, 0.1)', border: '#00758F', color: '#00758F', shadow: '0 4px 15px rgba(0, 117, 143, 0.3)' },
-        'Firebase': { bg: 'rgba(255, 193, 7, 0.1)', border: '#FFC107', color: '#FFC107', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' },
+        'Firebase': { bg: 'rgba(255, 193, 7, 0.1)', border: '#FFCA28', color: '#FFCA28', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' },
         'NoSQL': { bg: 'rgba(74, 20, 140, 0.1)', border: '#4A148C', color: '#4A148C', shadow: '0 4px 15px rgba(74, 20, 140, 0.3)' },
-        'Git/GitHub': { bg: 'rgba(36, 41, 46, 0.1)', border: '#24292E', color: '#24292E', shadow: '0 4px 15px rgba(36, 41, 46, 0.3)' },
+        'GitHub': { bg: 'rgba(0, 0, 0, 0.1)', border: '#000000', color: '#000000', shadow: '0 4px 15px rgba(0, 0, 0, 0.3)' },
+        'GitLab': { bg: 'rgba(226, 67, 41, 0.1)', border: '#E24329', color: '#E24329', shadow: '0 4px 15px rgba(226, 67, 41, 0.3)' },
+        'Git': { bg: 'rgba(240, 80, 50, 0.1)', border: '#F05032', color: '#F05032', shadow: '0 4px 15px rgba(240, 80, 50, 0.3)' },
         'Docker': { bg: 'rgba(0, 184, 240, 0.1)', border: '#00B8F0', color: '#00B8F0', shadow: '0 4px 15px rgba(0, 184, 240, 0.3)' },
         'CI/CD': { bg: 'rgba(156, 39, 176, 0.1)', border: '#9C27B0', color: '#9C27B0', shadow: '0 4px 15px rgba(156, 39, 176, 0.3)' },
-        'Linux': { bg: 'rgba(255, 193, 7, 0.1)', border: '#FFC107', color: '#FFC107', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' },
+        'Linux': { bg: 'rgba(0, 0, 0, 0.1)', border: '#000000', color: '#000000', shadow: '0 4px 15px rgba(0, 0, 0, 0.3)' },
         'Deploy': { bg: 'rgba(76, 175, 80, 0.1)', border: '#4CAF50', color: '#4CAF50', shadow: '0 4px 15px rgba(76, 175, 80, 0.3)' },
         'Apache': { bg: 'rgba(211, 47, 47, 0.1)', border: '#D32F2F', color: '#D32F2F', shadow: '0 4px 15px rgba(211, 47, 47, 0.3)' },
         'Pandas': { bg: 'rgba(21, 101, 192, 0.1)', border: '#1565C0', color: '#1565C0', shadow: '0 4px 15px rgba(21, 101, 192, 0.3)' },
         'R': { bg: 'rgba(33, 150, 243, 0.1)', border: '#2196F3', color: '#2196F3', shadow: '0 4px 15px rgba(33, 150, 243, 0.3)' },
         'Scikit-learn': { bg: 'rgba(255, 152, 0, 0.1)', border: '#FF9800', color: '#FF9800', shadow: '0 4px 15px rgba(255, 152, 0, 0.3)' },
         'Machine Learning': { bg: 'rgba(156, 39, 176, 0.1)', border: '#9C27B0', color: '#9C27B0', shadow: '0 4px 15px rgba(156, 39, 176, 0.3)' },
-        'Power BI': { bg: 'rgba(255, 193, 7, 0.1)', border: '#FFC107', color: '#FFC107', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' }
+        'Power BI': { bg: 'rgba(255, 193, 7, 0.1)', border: '#F2C811', color: '#F2C811', shadow: '0 4px 15px rgba(255, 193, 7, 0.3)' },
+        'Análise de Dados': { bg: 'rgba(3, 169, 244, 0.1)', border: '#03A9F4', color: '#03A9F4', shadow: '0 4px 15px rgba(3, 169, 244, 0.3)' },
+        'Data Analysis': { bg: 'rgba(3, 169, 244, 0.1)', border: '#03A9F4', color: '#03A9F4', shadow: '0 4px 15px rgba(3, 169, 244, 0.3)' },
+        'Modelagem de Dados': { bg: 'rgba(121, 85, 72, 0.1)', border: '#795548', color: '#795548', shadow: '0 4px 15px rgba(121, 85, 72, 0.3)' },
+        'Data Modeling': { bg: 'rgba(121, 85, 72, 0.1)', border: '#795548', color: '#795548', shadow: '0 4px 15px rgba(121, 85, 72, 0.3)' },
+        'Metodologias Ágeis': { bg: 'rgba(76, 175, 80, 0.1)', border: '#4CAF50', color: '#4CAF50', shadow: '0 4px 15px rgba(76, 175, 80, 0.3)' },
+        'Agile Methodologies': { bg: 'rgba(76, 175, 80, 0.1)', border: '#4CAF50', color: '#4CAF50', shadow: '0 4px 15px rgba(76, 175, 80, 0.3)' },
       }
-      
-      return colors[tech] || { bg: 'rgba(0, 255, 157, 0.1)', border: '#00FF9D', color: '#00FF9D', shadow: '0 4px 15px rgba(0, 255, 157, 0.3)' }
+
+      return colors[tech] || { 
+        bg: 'rgba(158, 158, 158, 0.1)', 
+        border: '#9E9E9E', 
+        color: '#9E9E9E', 
+        shadow: '0 4px 15px rgba(158, 158, 158, 0.3)' 
+      }
     }
   }
 }
@@ -243,23 +259,90 @@ export default {
   background-clip: text;
 }
 
+/* Layout principal - 3 colunas no desktop */
 .about-container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  max-width: 1400px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 20px;
   align-items: start;
 }
 
+/* Paragraph Side */
+.paragraph-side {
+  /* position: sticky; */
+  top: 100px;
+  height: fit-content;
+}
+
+.paragraph-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border-glow);
+  border-radius: 24px;
+  padding: 28px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* position: relative; */
+  overflow: hidden;
+  height: 100%;
+}
+
+.paragraph-card::before {
+  content: '';
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 24px 24px 0 0;
+}
+
+.paragraph-card:hover {
+  background: var(--bg-card);
+  border-color: var(--accent-primary);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 255, 157, 0.15);
+}
+
+.paragraph-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.paragraph-text {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  text-align: justify;
+  position: relative;
+}
+
+.paragraph-text::first-letter {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  float: left;
+  line-height: 1;
+  margin: 0.1rem 0.4rem 0 0;
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+}
+
+/* Photo Side */
 .photo-side {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .photo-container {
   position: relative;
+  width: 100%;
+  max-width: 300px;
 }
 
 .photo-placeholder {
@@ -289,48 +372,40 @@ export default {
 
 .name-tag {
   position: absolute;
+  text-align: center;
   bottom: 0;
   left: 0;
   right: 0;
   background: rgba(10, 10, 15, 0.95);
   color: var(--text-primary);
-  padding: 16px;
-  font-size: 1.1rem;
+  padding: 12px;
+  font-size: 1rem;
   font-weight: 600;
   backdrop-filter: blur(15px);
   border-top: 1px solid var(--border-glow);
 }
 
+/* Skills Side */
 .skills-side {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.skills-title {
-  color: var(--text-primary);
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin: 0;
-  text-align: center;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  gap: 20px;
 }
 
 .skills-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* duas colunas */
+  gap: 16px;
 }
+
 
 .skill-category-card {
   background: var(--bg-glass);
   backdrop-filter: blur(15px);
   border: 1px solid var(--border-glow);
-  border-radius: 20px;
-  padding: 24px;
+  border-radius: 18px;
+  padding: 20px;
+
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -357,82 +432,44 @@ export default {
 .skill-category-card:hover {
   background: var(--bg-card);
   border-color: var(--accent-primary);
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0, 255, 157, 0.2);
 }
 
 .category-header {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
 .category-icon-wrapper {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: var(--gradient-primary);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  margin: 0 auto;
 }
 
 .category-title {
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  flex: 1;
-}
-
-.tech-count {
-  background: rgba(0, 255, 157, 0.1);
-  color: var(--accent-primary);
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.tech-preview {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.tech-preview-badge {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid;
-  overflow: hidden;
-}
-
-.more-indicator {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border: 1px solid var(--border-glow);
+  text-align: center;
 }
 
 .click-hint {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-align: center;
   opacity: 0.7;
+  margin-top: 8px;
 }
 
 /* Modal Styles */
@@ -569,20 +606,6 @@ export default {
   display: block;
 }
 
-.badge-glow {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s;
-}
-
-.tech-badge-full:hover .badge-glow {
-  left: 100%;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -599,53 +622,96 @@ export default {
   }
 }
 
-@media (max-width: 1024px) {
+/* Responsive Design */
+@media (max-width: 1200px) {
   .about-container {
-    grid-template-columns: 1fr;
-    gap: 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px;
   }
   
-  .skills-overview {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .paragraph-side {
+    grid-column: 1 / -1;
+    position: relative;
+    top: 0;
+  }
+  
+  .paragraph-card {
+    padding: 24px;
+  }
+  
+  .paragraph-content {
+    align-items: flex-start;
+  }
+  
+  .photo-side {
+    grid-column: 1;
+  }
+  
+  .skills-side {
+    grid-column: 2;
   }
 }
 
 @media (max-width: 768px) {
   .section-title {
     font-size: 2.5rem;
+    margin-bottom: 40px;
   }
   
-  .photo-placeholder {
-    max-width: 280px;
-  }
-  
-  .skills-title {
-    font-size: 1.8rem;
-  }
-
-  .skills-overview {
+  .about-container {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
-
-  .skill-category-card {
+  
+  .paragraph-side,
+  .photo-side,
+  .skills-side {
+    grid-column: 1;
+  }
+  
+  .paragraph-card {
     padding: 20px;
   }
-
+  
+  .paragraph-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .paragraph-text::first-letter {
+    font-size: 2.5rem;
+    margin: 0.05rem 0.3rem 0 0;
+  }
+  
+  .photo-container {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .skills-overview {
+    grid-template-columns: 1fr; /* mobile volta pra 1 coluna */
+  }
+  
+  .skill-category-card {
+    padding: 18px;
+  }
+  
+  .category-header {
+    gap: 10px;
+  }
+  
+  .category-title {
+    font-size: 0.95rem;
+  }
+  
   .modal-content {
     width: 95vw;
     max-height: 85vh;
   }
-
+  
   .tech-badges-grid {
     grid-template-columns: 1fr;
-  }
-
-  .modal-header {
-    padding: 20px;
-  }
-
-  .modal-body {
-    padding: 20px;
   }
 }
 
@@ -656,37 +722,63 @@ export default {
   
   .section-title {
     font-size: 2rem;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
-
-  .skills-side {
-    gap: 25px;
+  
+  .paragraph-card {
+    padding: 18px;
   }
-
-  .category-header {
+  
+  .paragraph-text::first-letter {
+    font-size: 2rem;
+  }
+  
+  .photo-container {
+    max-width: 200px;
+  }
+  
+  .name-tag {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .skill-category-card {
+    padding: 16px;
+  }
+  
+  .category-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .category-title {
+    font-size: 0.9rem;
+  }
+  
+  
+  .click-hint {
+    font-size: 0.75rem;
+  }
+  
+  .modal-header {
+    padding: 18px;
     flex-direction: column;
     text-align: center;
     gap: 12px;
   }
-
-  .tech-preview {
-    justify-content: center;
-  }
-
-  .modal-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 16px;
-  }
-
+  
   .close-btn {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 12px;
+    right: 12px;
+  }
+  
+  .modal-body {
+    padding: 18px;
   }
 }
 
-/* Custom Scrollbar for Modal */
+/* Scrollbar Modal */
 .modal-body::-webkit-scrollbar {
   width: 6px;
 }

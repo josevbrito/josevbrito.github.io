@@ -4,7 +4,7 @@ const about = {
     skills: {
       Frontend: {
         name: 'Frontend',
-        items: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'HTML5 & CSS3', 'Flutter', 'Angular']
+        items: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Flutter', 'Angular']
       },
       Backend: {
         name: 'Backend',
@@ -12,11 +12,11 @@ const about = {
       },
       BancoDeDados: {
         name: 'Banco de Dados',
-        items: ['PostgreSQL', 'MySQL', 'Firebase', 'NoSQL']
+        items: ['SQL', 'PostgreSQL', 'MySQL', 'Firebase', 'NoSQL']
       },
       Cloud: {
         name: 'Cloud & DevOps',
-        items: ['Git/GitHub', 'Docker', 'CI/CD', 'Linux', 'Deploy', 'Apache']
+        items: ['Git', 'GitHub', 'GitLab', 'Docker', 'CI/CD', 'Linux', 'Deploy', 'Apache']
       },
       DataScience: {
         name: 'Ciência de Dados e Análise',
@@ -34,7 +34,7 @@ const about = {
     skills: {
       Frontend: {
         name: 'Frontend',
-        items: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'HTML5 & CSS3', 'Flutter', 'Angular']
+        items: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Flutter', 'Angular']
       },
       Backend: {
         name: 'Backend',
@@ -42,11 +42,11 @@ const about = {
       },
       BancoDeDados: {
         name: 'Databases',
-        items: ['PostgreSQL', 'MySQL', 'Firebase', 'NoSQL']
+        items: ['SQL', 'PostgreSQL', 'MySQL', 'Firebase', 'NoSQL']
       },
       Cloud: {
         name: 'Cloud & DevOps',
-        items: ['Git/GitHub', 'Docker', 'CI/CD', 'Linux', 'Deploy', 'Apache']
+        items: ['Git', 'GitHub', 'GitLab', 'Docker', 'CI/CD', 'Linux', 'Deploy', 'Apache']
       },
       DataScience: {
         name: 'Data Science & Analytics',
