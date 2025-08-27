@@ -15,6 +15,11 @@
             <span v-if="link.id === 'projects'" class="project-counter">{{ projectsCount }}</span>
           </a>
         </li>
+        <li class="nav-item language-switcher">
+          <button @click="toggleLanguage" class="language-toggle">
+            <img :src="flagSrc" :alt="flagAltText" class="flag-icon">
+          </button>
+        </li>
       </ul>
 
       <div class="mobile-nav">
@@ -48,6 +53,12 @@
                   <span v-if="link.id === 'projects'" class="project-counter">{{ projectsCount }}</span>
                 </a>
               </li>
+              <li class="mobile-nav-item">
+                <button @click="toggleLanguageAndCloseMenu" class="mobile-nav-link language-item">
+                  <img :src="flagSrc" :alt="flagAltText" class="flag-icon-mobile">
+                  <span>{{ translations[currentLanguage].navigation.language }}</span>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -56,94 +67,83 @@
   </nav>
 </template>
 
-<script>
-import { ref, computed } from 'vue'
-import { state, toggleLanguage as globalToggleLanguage } from '../translate/main.js'
+<script setup>
+import { ref, computed } from 'vue';
+import { state, toggleLanguage as globalToggleLanguage } from '../translate/main.js';
 
-export default {
-  name: 'Navigation',
-  props: {
-    scrolled: Boolean,
-    activeSection: String,
-    projectsCount: {
-      type: Number,
-      default: 0
-    }
-  },
-  emits: ['scroll-to'],
-  setup(props, { emit }) {
-    const mobileMenuOpen = ref(false)
-
-    const currentLanguage = computed(() => state.currentLanguage)
-    const translations = computed(() => state.translations)
-
-    const navigationLinks = computed(() => [
-      { id: 'home', href: '#home', icon: 'fas fa-home', text: translations.value[currentLanguage.value].navigation.home_nav },
-      { id: 'about', href: '#about', icon: 'fas fa-user', text: translations.value[currentLanguage.value].navigation.about_nav },
-      { id: 'experience', href: '#experience', icon: 'fas fa-briefcase', text: translations.value[currentLanguage.value].navigation.experience_nav },
-      { id: 'projects', href: '#projects', icon: 'fas fa-code', text: translations.value[currentLanguage.value].navigation.projects_nav },
-      { id: 'education', href: '#education', icon: 'fas fa-graduation-cap', text: translations.value[currentLanguage.value].navigation.education_nav },
-      { id: 'contact', href: '#contact', icon: 'fas fa-envelope', text: translations.value[currentLanguage.value].navigation.contact_nav }
-    ])
-
-    const flagSrc = computed(() => {
-      const flags = {
-        'en': '/flags/uk.png',
-        'pt': '/flags/brazil.jpg',
-        'es': '/flags/spain.png',
-        'zh': '/flags/china.png'
-      }
-      return flags[currentLanguage.value] || '/flags/uk.png'
-    })
-
-    const flagAltText = computed(() => {
-      const altTexts = {
-        'en': 'Mudar para Português',
-        'pt': 'Cambiar a Español',
-        'es': '切换到中文',
-        'zh': 'Switch to English'
-      }
-      return altTexts[currentLanguage.value] || 'Language Flag'
-    })
-
-    const toggleMobileMenu = () => {
-      mobileMenuOpen.value = !mobileMenuOpen.value
-      document.body.style.overflow = mobileMenuOpen.value ? 'hidden' : ''
-    }
-
-    const closeMobileMenu = () => {
-      mobileMenuOpen.value = false
-      document.body.style.overflow = ''
-    }
-
-    const scrollAndClose = (section) => {
-      emit('scroll-to', section)
-      closeMobileMenu()
-    }
-    
-    const scrollToSection = (section) => {
-      emit('scroll-to', section)
-    }
-
-    const toggleLanguage = () => {
-      globalToggleLanguage()
-    }
-
-    return {
-      mobileMenuOpen,
-      currentLanguage,
-      translations,
-      navigationLinks,
-      flagSrc,
-      flagAltText,
-      toggleMobileMenu,
-      closeMobileMenu,
-      scrollAndClose,
-      scrollToSection,
-      toggleLanguage
-    }
+// Props e Emits
+const props = defineProps({
+  scrolled: Boolean,
+  activeSection: String,
+  projectsCount: {
+    type: Number,
+    default: 0
   }
-}
+});
+
+const emit = defineEmits(['scroll-to']);
+
+const mobileMenuOpen = ref(false);
+
+const currentLanguage = computed(() => state.currentLanguage);
+const translations = computed(() => state.translations);
+
+const navigationLinks = computed(() => [
+  { id: 'home', href: '#home', icon: 'fas fa-home', text: translations.value[currentLanguage.value].navigation.home_nav },
+  { id: 'about', href: '#about', icon: 'fas fa-user', text: translations.value[currentLanguage.value].navigation.about_nav },
+  { id: 'experience', href: '#experience', icon: 'fas fa-briefcase', text: translations.value[currentLanguage.value].navigation.experience_nav },
+  { id: 'projects', href: '#projects', icon: 'fas fa-code', text: translations.value[currentLanguage.value].navigation.projects_nav },
+  { id: 'education', href: '#education', icon: 'fas fa-graduation-cap', text: translations.value[currentLanguage.value].navigation.education_nav },
+  { id: 'contact', href: '#contact', icon: 'fas fa-envelope', text: translations.value[currentLanguage.value].navigation.contact_nav }
+]);
+
+const flagSrc = computed(() => {
+  const flags = {
+    'en': '/flags/uk.png',
+    'pt': '/flags/brazil.jpg',
+    'es': '/flags/spain.png',
+    'zh': '/flags/china.png'
+  };
+  return flags[currentLanguage.value] || '/flags/uk.png';
+});
+
+const flagAltText = computed(() => {
+  const altTexts = {
+    'en': 'Mudar para Português',
+    'pt': 'Cambiar a Español',
+    'es': '切换到中文',
+    'zh': 'Switch to English'
+  };
+  return altTexts[currentLanguage.value] || 'Language Flag';
+});
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+  document.body.style.overflow = mobileMenuOpen.value ? 'hidden' : '';
+};
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false;
+  document.body.style.overflow = '';
+};
+
+const scrollAndClose = (section) => {
+  emit('scroll-to', section);
+  closeMobileMenu();
+};
+
+const scrollToSection = (section) => {
+  emit('scroll-to', section);
+};
+
+const toggleLanguage = () => {
+  globalToggleLanguage();
+};
+
+const toggleLanguageAndCloseMenu = () => {
+  globalToggleLanguage();
+  closeMobileMenu();
+};
 </script>
 
 <style scoped>
@@ -154,7 +154,8 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: auto;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-glass {
@@ -182,6 +183,10 @@ export default {
   align-items: center;
 }
 
+.nav-item {
+  position: relative;
+}
+
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
@@ -200,6 +205,11 @@ export default {
   color: var(--text-primary);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
 }
 
 .nav-link.active {
@@ -249,7 +259,7 @@ export default {
 .language-toggle:hover {
   transform: scale(1.1);
   border-color: var(--accent-primary);
-  box-shadow: 0 0 10px var(--accent-primary);
+  /* box-shadow: 0 0 10px var(--accent-primary); */
 }
 
 .flag-icon {
@@ -265,6 +275,7 @@ export default {
   display: none;
 }
 
+/* Botão de idioma móvel */
 .mobile-language-toggle {
   display: none;
 }
@@ -314,7 +325,7 @@ export default {
   backdrop-filter: blur(10px);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 1001;
 }
 
@@ -390,6 +401,8 @@ export default {
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    position: relative;
+    z-index: 1000;
   }
   .mobile-language-toggle {
     display: flex;
@@ -400,11 +413,9 @@ export default {
     margin: 0;
     transition: transform 0.3s ease;
   }
-
   .mobile-language-toggle:hover {
     transform: scale(1.1);
   }
-
   .flag-icon-mobile {
     width: 24px;
     height: 18px;
@@ -412,26 +423,27 @@ export default {
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
-
   .nav-container {
     top: 15px;
     left: 20px;
     right: 20px;
     transform: none;
-    width: calc(100% - 40px);
+    width: auto;
   }
-
   .nav-glass {
     padding: 8px 12px;
     border-radius: 15px;
-    display: flex;
     justify-content: flex-end;
-    width: auto;
-    min-width: auto;
   }
-
   .nav-scrolled {
     top: 5px;
+  }
+  .mobile-nav-link.language-item {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glow);
+    color: var(--text-primary);
+    margin-top: 10px;
+    text-align: center;
   }
 }
 
@@ -439,6 +451,7 @@ export default {
 @media (prefers-reduced-motion: reduce) {
   .nav-container,
   .nav-link,
+  .nav-link::after,
   .mobile-toggle span,
   .mobile-menu-overlay,
   .mobile-menu,
