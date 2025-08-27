@@ -4,7 +4,7 @@
     <div class="contact-container">
       <div class="contact-info">
         <h3>{{ translations.contact.subtitle }}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 30px;">
+        <p class="contact-message">
           {{ translations.contact.message }}
         </p>
         <ul class="contact-list">
@@ -13,24 +13,24 @@
             :key="contact.type" 
             class="contact-item"
           >
-            <div class="contact-icon">
-              <i :class="contact.icon"></i>
-            </div>
-            <div>
-              <strong>{{ contact.label }}</strong><br>
-              <a 
-                :href="contact.link" 
-                style="color: var(--text-secondary);" 
-                target="_blank" 
-                rel="noopener"
-              >
-                {{ contact.value }}
-              </a>
-            </div>
+            <a 
+              :href="contact.link" 
+              target="_blank" 
+              rel="noopener"
+              class="contact-link"
+            >
+              <div class="contact-icon">
+                <i :class="contact.icon"></i>
+              </div>
+              <div class="contact-details">
+                <strong>{{ contact.label }}</strong><br>
+                <span>{{ contact.value }}</span>
+              </div>
+            </a>
           </li>
         </ul>
       </div>
-      <div class="contact-form">
+      <div class="contact-form glass-card">
         <form @submit.prevent="submitForm">
           <div class="form-group">
             <label class="form-label">{{ translations.contact.form.name }}</label>
@@ -62,7 +62,6 @@
           <button 
             type="submit" 
             class="btn-primary" 
-            style="width: 100%;" 
             :disabled="localSubmitting"
           >
             <i class="fas fa-paper-plane"></i>
@@ -70,10 +69,10 @@
           </button>
           <div 
             v-if="localFormMessage" 
-            style="margin-top: 15px; padding: 15px; border-radius: 10px; text-align: center;" 
-            :style="{ 
-              background: localFormMessageType === 'success' ? 'rgba(78, 205, 196, 0.2)' : 'rgba(255, 107, 107, 0.2)', 
-              color: localFormMessageType === 'success' ? 'var(--accent-tertiary)' : 'var(--accent-secondary)' 
+            class="form-message"
+            :class="{ 
+              'success': localFormMessageType === 'success',
+              'error': localFormMessageType === 'error'
             }"
           >
             {{ localFormMessage }}
@@ -165,7 +164,6 @@ export default {
 </script>
 
 <style scoped>
-
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -174,6 +172,90 @@ export default {
     margin: 0 auto;
 }
 
+.contact-info h3 {
+    color: var(--accent-primary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.contact-message {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+/* --- Lista de Contatos --- */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-item {
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    padding: 15px;
+    background: var(--bg-glass);
+    border-radius: 10px;
+    border: 1px solid var(--border-glow);
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-link:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-primary);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-link:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-details strong {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.contact-details span {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover .contact-details span {
+    color: var(--text-primary);
+}
+
+
+/* --- Formulário de Contato --- */
 .contact-form {
     background: var(--bg-card);
     padding: 40px;
@@ -197,7 +279,7 @@ export default {
     width: 100%;
     padding: 15px;
     background: var(--bg-glass);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-glow);
     border-radius: 10px;
     color: var(--text-primary);
     font-family: inherit;
@@ -207,44 +289,100 @@ export default {
 .form-input:focus, .form-textarea:focus {
     outline: none;
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
 }
 
-.contact-info h3 {
-    color: var(--accent-primary);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+/* --- Feedback do Formulário --- */
+.form-message {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.contact-list {
-    list-style: none;
+.form-message.success {
+  background: rgba(78, 205, 196, 0.2);
+  color: var(--accent-tertiary);
+  border: 1px solid var(--accent-tertiary);
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 15px;
-    background: var(--bg-glass);
-    border-radius: 10px;
-    transition: all 0.3s ease;
+.form-message.error {
+  background: rgba(255, 107, 107, 0.2);
+  color: rgba(255, 107, 107, 0.9);
+  border: 1px solid rgba(255, 107, 107, 0.9);
 }
 
-.contact-item:hover {
-    background: var(--bg-card);
-    transform: translateX(10px);
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        flex-direction: column-reverse;
+        gap: 40px;
+    }
+    .contact-info {
+        text-align: left;
+    }
+    .contact-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .contact-item {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 0;
+    }
+    .contact-link {
+        justify-content: flex-start;
+    }
+    .contact-details {
+        text-align: left;
+    }
+    .contact-form {
+        padding: 30px;
+    }
 }
 
-.contact-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--gradient-tertiary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-primary);
+@media (max-width: 480px) {
+    .contact-info h3 {
+        font-size: 1.3rem;
+    }
+    .contact-message {
+        font-size: 0.9rem;
+    }
+    .contact-form {
+        padding: 25px;
+    }
+    .form-input, .form-textarea {
+        padding: 12px;
+    }
+    .contact-link {
+        padding: 10px;
+        gap: 15px;
+    }
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    .contact-details strong {
+        font-size: 1rem;
+    }
+    .contact-details span {
+        font-size: 0.9rem;
+    }
 }
 
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  text-align: center;
+}
 </style>

@@ -8,6 +8,11 @@ const footer = {
         url: 'https://www.linkedin.com/in/josevbrito/'
       },
       {
+        name: 'GitHub',
+        icon: 'fab fa-github',
+        url: 'https://github.com/josevbrito'
+      },
+      {
         name: 'Email',
         icon: 'fas fa-envelope',
         url: 'mailto:josevbrito.tech@gmail.com'
@@ -26,6 +31,11 @@ const footer = {
         name: 'LinkedIn',
         icon: 'fab fa-linkedin',
         url: 'https://www.linkedin.com/in/josevbrito/'
+      },
+      {
+        name: 'GitHub',
+        icon: 'fab fa-github',
+        url: 'https://github.com/josevbrito'
       },
       {
         name: 'Email',
@@ -48,6 +58,11 @@ const footer = {
         url: 'https://www.linkedin.com/in/josevbrito/'
       },
       {
+        name: 'GitHub',
+        icon: 'fab fa-github',
+        url: 'https://github.com/josevbrito'
+      },
+      {
         name: 'Correo',
         icon: 'fas fa-envelope',
         url: 'mailto:josevbrito.tech@gmail.com'
@@ -68,6 +83,11 @@ const footer = {
         url: 'https://www.linkedin.com/in/josevbrito/'
       },
       {
+        name: 'GitHub',
+        icon: 'fab fa-github',
+        url: 'https://github.com/josevbrito'
+      },
+      {
         name: '电子邮件',
         icon: 'fas fa-envelope',
         url: 'mailto:josevbrito.tech@gmail.com'
@@ -81,4 +101,4 @@ const footer = {
   }
 }
 
-export default footer
+export default footer;
