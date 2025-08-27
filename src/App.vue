@@ -127,5 +127,5 @@ export default {
 </script>
 
 <style>
-@import url('./assets/styles/main.css');
+@import url('./assets/style/main.css');
 </style>
