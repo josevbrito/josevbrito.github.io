@@ -119,7 +119,7 @@ const getTechIcon = (tech) => {
     'Vue.js': 'vuejs', 'React': 'react', 'JavaScript': 'javascript', 'TypeScript': 'typescript', 'HTML5': 'html', 'CSS3': 'css', 'Flutter': 'flutter', 'Angular': 'angular', 'PHP': 'php', 'Laravel': 'laravel', 'Spring Boot': 'springboot', 'Nest.js': 'nestjs', 'Python': 'python', 'Pytorch': 'pytorch', 'Keras': 'keras', 'Node.js': 'nodejs', 'Redis': 'redis', 'RESTful APIs': 'restfulapi', 'Microsserviços': 'microservices', 'Microservices': 'microservices', 'PostgreSQL': 'postgresql', 'MySQL': 'mysql', 'Firebase': 'firebase', 'SQL': 'sql', 'NoSQL': 'nosql', 'GitHub': 'github', 'Git': 'git', 'GitLab': 'gitlab', 'Docker': 'docker', 'CI/CD': 'cicd', 'Linux': 'linux', 'Deploy': 'deploy', 'Apache': 'apache', 'Pandas': 'pandas', 'R': 'r', 'Scikit-learn': 'scikitlearn', 'Machine Learning': 'machinelearning', 'Power BI': 'powerbi', 'Análise de Dados': 'dataanalysis', 'Data Analysis': 'dataanalysis', 'Modelagem de Dados': 'datamodeling', 'Data Modeling': 'datamodeling', 'Metodologias Ágeis': 'agile', 'Agile Methodologies': 'agile',
   };
   const iconName = iconMap[tech] || 'default';
-  return `<img src="../src/assets/icons/${iconName}.png" alt="${tech}" class="tech-logo" />`;
+  return `<img src="icons/${iconName}.png" alt="${tech}" class="tech-logo" />`;
 };
 
 const getTechStyle = (tech) => {
