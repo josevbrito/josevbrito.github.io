@@ -15,10 +15,23 @@
             <span v-if="link.id === 'projects'" class="project-counter">{{ projectsCount }}</span>
           </a>
         </li>
-        <li class="nav-item language-switcher">
-          <button @click="toggleLanguage" class="language-toggle">
+        <li class="nav-item language-dropdown" @click.stop="toggleLanguageDropdown">
+          <button class="language-toggle">
             <img :src="flagSrc" :alt="flagAltText" class="flag-icon">
           </button>
+          <transition name="fade-slide-down">
+            <div v-if="languageMenuOpen" class="language-options">
+              <button 
+                v-for="(lang, key) in translations"   
+                :key="key"
+                @click="changeLanguage(key)"
+                :class="{ 'active-lang': key === currentLanguage }"
+              >
+                <img :src="getFlagSrc(key)" :alt="`Flag for ${key}`">
+                <span>{{ lang.navigation.language_name }}</span>
+              </button>
+            </div>
+          </transition>
         </li>
       </ul>
 
@@ -53,10 +66,16 @@
                   <span v-if="link.id === 'projects'" class="project-counter">{{ projectsCount }}</span>
                 </a>
               </li>
-              <li class="mobile-nav-item">
-                <button @click="toggleLanguageAndCloseMenu" class="mobile-nav-link language-item">
-                  <img :src="flagSrc" :alt="flagAltText" class="flag-icon-mobile">
-                  <span>{{ translations[currentLanguage].navigation.language }}</span>
+              <li class="mobile-nav-item language-item">
+                <button 
+                  v-for="(lang, key) in translations"
+                  :key="key"
+                  @click="changeLanguageAndCloseMenu(key)"
+                  :class="{ 'active-lang': key === currentLanguage }"
+                  class="mobile-lang-btn"
+                >
+                  <img :src="getFlagSrc(key)" :alt="`Flag for ${key}`" class="flag-icon-mobile">
+                  <span>{{ lang.navigation.language_name }}</span>
                 </button>
               </li>
             </ul>
@@ -68,10 +87,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { state, toggleLanguage as globalToggleLanguage } from '../translate/main.js';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { state, toggleLanguage, changeLanguage as globalChangeLanguage } from '../translate/main.js';
 
-// Props e Emits
 const props = defineProps({
   scrolled: Boolean,
   activeSection: String,
@@ -84,6 +102,7 @@ const props = defineProps({
 const emit = defineEmits(['scroll-to']);
 
 const mobileMenuOpen = ref(false);
+const languageMenuOpen = ref(false);
 
 const currentLanguage = computed(() => state.currentLanguage);
 const translations = computed(() => state.translations);
@@ -97,29 +116,23 @@ const navigationLinks = computed(() => [
   { id: 'contact', href: '#contact', icon: 'fas fa-envelope', text: translations.value[currentLanguage.value].navigation.contact_nav }
 ]);
 
-const flagSrc = computed(() => {
+const flagSrc = computed(() => getFlagSrc(currentLanguage.value));
+const flagAltText = computed(() => `Mudar para ${translations.value[currentLanguage.value].navigation.language_name}`);
+
+const getFlagSrc = (lang) => {
   const flags = {
     'en': '/flags/uk.png',
     'pt': '/flags/brazil.jpg',
     'es': '/flags/spain.png',
     'zh': '/flags/china.png'
   };
-  return flags[currentLanguage.value] || '/flags/uk.png';
-});
-
-const flagAltText = computed(() => {
-  const altTexts = {
-    'en': 'Mudar para Português',
-    'pt': 'Cambiar a Español',
-    'es': '切换到中文',
-    'zh': 'Switch to English'
-  };
-  return altTexts[currentLanguage.value] || 'Language Flag';
-});
+  return flags[lang] || '/flags/uk.png';
+};
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value;
   document.body.style.overflow = mobileMenuOpen.value ? 'hidden' : '';
+  languageMenuOpen.value = false;
 };
 
 const closeMobileMenu = () => {
@@ -136,14 +149,33 @@ const scrollToSection = (section) => {
   emit('scroll-to', section);
 };
 
-const toggleLanguage = () => {
-  globalToggleLanguage();
+const toggleLanguageDropdown = () => {
+  languageMenuOpen.value = !languageMenuOpen.value;
 };
 
-const toggleLanguageAndCloseMenu = () => {
-  globalToggleLanguage();
+const changeLanguage = (lang) => {
+  globalChangeLanguage(lang);
+  languageMenuOpen.value = false;
+};
+
+const changeLanguageAndCloseMenu = (lang) => {
+  globalChangeLanguage(lang);
   closeMobileMenu();
 };
+
+const closeDropdownOnClickOutside = (event) => {
+  if (!event.target.closest('.language-dropdown')) {
+    languageMenuOpen.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', closeDropdownOnClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeDropdownOnClickOutside);
+});
 </script>
 
 <style scoped>
@@ -238,8 +270,9 @@ const toggleLanguageAndCloseMenu = () => {
   font-weight: bold;
 }
 
-/* --- SELETOR DE IDIOMA --- */
-.language-switcher {
+/* --- SELETOR DE IDIOMA DESKTOP --- */
+.language-dropdown {
+  position: relative;
   margin-left: 15px;
 }
 
@@ -259,7 +292,6 @@ const toggleLanguageAndCloseMenu = () => {
 .language-toggle:hover {
   transform: scale(1.1);
   border-color: var(--accent-primary);
-  /* box-shadow: 0 0 10px var(--accent-primary); */
 }
 
 .flag-icon {
@@ -268,6 +300,54 @@ const toggleLanguageAndCloseMenu = () => {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.language-options {
+  position: absolute;
+  top: 55px;
+  right: -70px;
+  background: var(--bg-card);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border-glow);
+  border-radius: 15px;
+  box-shadow: var(--shadow-primary);
+  padding: 10px;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1001;
+}
+
+.language-options button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-options button:hover {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+}
+
+.language-options button.active-lang {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-weight: 600;
+}
+
+.language-options img {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
 }
 
 /* --- MENU MOBILE --- */
@@ -319,7 +399,7 @@ const toggleLanguageAndCloseMenu = () => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
@@ -391,8 +471,58 @@ const toggleLanguageAndCloseMenu = () => {
   margin-left: auto;
 }
 
-/* --- RESPONSIVIDADE (REVISADA) --- */
-@media (max-width: 900px) {
+.language-item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+.mobile-lang-btn {
+  background: none;
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+}
+
+.mobile-lang-btn:hover {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.mobile-lang-btn.active-lang {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-weight: 600;
+  border-color: var(--accent-primary);
+}
+
+.flag-icon-mobile {
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* --- RESPONSIVIDADE --- */
+
+@media (max-width: 1210px) {
+  .language-options {
+    right: -32px;
+  }
+}
+
+@media (max-width: 1135px) {
   .desktop-menu {
     display: none;
   }
@@ -401,8 +531,6 @@ const toggleLanguageAndCloseMenu = () => {
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    position: relative;
-    z-index: 1000;
   }
   .mobile-language-toggle {
     display: flex;
@@ -433,30 +561,29 @@ const toggleLanguageAndCloseMenu = () => {
   .nav-glass {
     padding: 8px 12px;
     border-radius: 15px;
-    justify-content: flex-end;
   }
   .nav-scrolled {
     top: 5px;
   }
-  .mobile-nav-link.language-item {
-    background: var(--bg-glass);
-    border: 1px solid var(--border-glow);
-    color: var(--text-primary);
-    margin-top: 10px;
-    text-align: center;
-  }
 }
 
 /* --- ACESSIBILIDADE --- */
+.fade-slide-down-enter-active, .fade-slide-down-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-slide-down-enter-from, .fade-slide-down-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
 @media (prefers-reduced-motion: reduce) {
   .nav-container,
   .nav-link,
-  .nav-link::after,
   .mobile-toggle span,
   .mobile-menu-overlay,
   .mobile-menu,
   .mobile-nav-link,
-  .language-toggle {
+  .language-toggle,
+  .language-options {
     transition: none !important;
     animation: none !important;
   }

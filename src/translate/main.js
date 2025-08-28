@@ -9,10 +9,9 @@ import contact from './contact';
 import footer from './footer';
 
 export const state = reactive({
-  currentLanguage: 'en',
+  currentLanguage: 'pt',
   translations: {
     pt: {
-
       navigation: navigation.pt,
       hero: hero.pt,
       about: about.pt,
@@ -21,9 +20,7 @@ export const state = reactive({
       education: education.pt,
       contact: contact.pt,
       footer: footer.pt
-
     },
-
     en: {
       navigation: navigation.en,
       hero: hero.en,
@@ -33,9 +30,7 @@ export const state = reactive({
       education: education.en,
       contact: contact.en,
       footer: footer.en
-
     },
-
     es: {
       navigation: navigation.es,
       hero: hero.es,
@@ -45,9 +40,7 @@ export const state = reactive({
       education: education.es,
       contact: contact.es,
       footer: footer.es
-
     },
-
     zh: {
       navigation: navigation.zh,
       hero: hero.zh,
@@ -57,13 +50,16 @@ export const state = reactive({
       education: education.zh,
       contact: contact.zh,
       footer: footer.zh
-
     }
   }
 });
 
+export function changeLanguage(lang) {
+  state.currentLanguage = lang;
+}
+
 export function toggleLanguage() {
-  const languages = ['en', 'pt', 'es', 'zh'];
+  const languages = ['pt', 'en', 'es', 'zh'];
   const currentIndex = languages.indexOf(state.currentLanguage);
   const nextIndex = (currentIndex + 1) % languages.length;
   state.currentLanguage = languages[nextIndex];
